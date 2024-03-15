@@ -13,8 +13,9 @@ const PickBlank = () => {
         setCountry(val);
     }
 
-    const selectCity = (val) => {
-        setCity(val);
+    const selectCity = (event) => {
+        event.preventDefault(); // Prevent default form submission
+        setCity(event); // Extract city value from form
     }
     const changeState = () => {
         if (stage == 'country') {
@@ -25,10 +26,19 @@ const PickBlank = () => {
         }
     }
     const returnHome = () => {
-        //router.push('/');
+        router.push('/');
     }
     const next = () => {
-        console.log('leehim')
+        console.log(city);
+        console.log(country);
+    }
+    const handleInputChange = (event) => {
+        setCity(event.target.value);
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(city);
+        console.log(country);
     }
 
     return (
@@ -46,8 +56,10 @@ const PickBlank = () => {
                         </div>
                     ) : stage == 'city' ? (
                         <div className="flex flex-col">
-                            <form className="flex flex-col mt-3" onSubmit={(val) => selectCity(val)}>
-                                <input className="border border-black mb-2" />
+                            <form className="flex flex-col mt-3" onSubmit={handleSubmit}>
+                                <input className="border border-black mb-2"
+                                    value={city}
+                                    onChange={handleInputChange} />
                                 <button type="submit" onClick={next}>Next</button>
                             </form>
                             <button className="mt-5" onClick={changeState}>Back</button>
