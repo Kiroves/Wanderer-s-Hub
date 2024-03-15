@@ -8,7 +8,7 @@ export const validateToken = async (token) => {
 
 };
 
-export const signOut = async () => {
+export const signOutGoogle = async () => {
 
     const auth = getAuth();
     signOut(auth).then(() => {
