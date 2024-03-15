@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from 'react';
 import PickBlank from '@/components/PickBlank';
+import { useRouter } from 'next/navigation';
 
 export default function Page(){
   const [stage, setStage] = useState('country');
   const [country, setCountry] = useState('');
   const [city, setCity] = useState('');
-
+  const router = useRouter();
   const handleCountryChange = (val) => {
     setCountry(val);
   }
@@ -33,7 +34,7 @@ export default function Page(){
     <div>
     {stage === 'country' && (
       <div>
-        <PickBlank blank="country" onNextClick={changeStage} onSelectBlank = {handleCountryChange} />
+        <PickBlank blank="country" onBackClick = {() => router.push('/')} onNextClick={changeStage} onSelectBlank = {handleCountryChange} />
       </div>
     )}
 

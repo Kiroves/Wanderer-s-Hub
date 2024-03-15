@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import TextBox from './TextBox';
 
-const PickBlank = ( {blank, onNextClick, onBackClick, onSelectBlank} ) => {
+const PickBlank = ( {blank, onBackClick, onNextClick, onSelectBlank} ) => {
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
 
@@ -29,6 +29,7 @@ const PickBlank = ( {blank, onNextClick, onBackClick, onSelectBlank} ) => {
                     <div className = "flex flex-col">
                         <CountryDropdown value = {country} onChange = {(val) => selectCountry(val)} className = "w-48 h-12 mt-5 mb-5"/>
                         <button onClick = {onNextClick}>Next</button>
+                        <button onClick = {onBackClick}>Back</button>
                     </div>
                     ) : blank == 'city' ? (
                     <div className = "flex flex-col">
