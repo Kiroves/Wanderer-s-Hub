@@ -10,7 +10,7 @@ const PickBlank = ( {blank} ) => {
 
 
     return (
-        <div class="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center h-screen">
             <div className = "relative">
                 <div className = "border border-black absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 flex flex-col items-center">
                     <div className = "text-black mt-24"> 
@@ -19,7 +19,7 @@ const PickBlank = ( {blank} ) => {
                     {blank === 'country' ? (
                     <CountryDropdown value = {country} onChange = {(val) => selectCountry(val)} className = "w-48 h-12 mt-5"/>
                     ) :(
-                    <div> hi</div>
+                    <div>placeholder</div>
                     )}
                 </div>
             </div>
