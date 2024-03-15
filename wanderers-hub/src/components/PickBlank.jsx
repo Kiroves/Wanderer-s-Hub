@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import TextBox from './TextBox';
 
-const PickBlank = ( {blank} ) => {
+const PickBlank = ( {blank, onNextClick, onBackClick, onSelectBlank} ) => {
     const [country, setCountry] = useState('');
+    const [city, setCity] = useState('');
 
     const selectCountry = (val) => {
         setCountry(val);
+        onSelectBlank(val);
+    }
+
+    const selectCity = (val) => {
+        setCity(val);
+        onSelectBlank(val);
+
     }
 
 
@@ -17,9 +26,20 @@ const PickBlank = ( {blank} ) => {
                         Pick a {blank}
                     </div>
                     {blank === 'country' ? (
-                    <CountryDropdown value = {country} onChange = {(val) => selectCountry(val)} className = "w-48 h-12 mt-5"/>
-                    ) :(
-                    <div>placeholder</div>
+                    <div className = "flex flex-col">
+                        <CountryDropdown value = {country} onChange = {(val) => selectCountry(val)} className = "w-48 h-12 mt-5 mb-5"/>
+                        <button onClick = {onNextClick}>Next</button>
+                    </div>
+                    ) : blank == 'city' ? (
+                    <div className = "flex flex-col">
+                        <form className = "flex flex-col mt-3" onSubmit = {(val) => selectCity(val)}>
+                            <input className = "border border-black mb-2"/>
+                            <button type = "submit" onClick = {onNextClick}>Next</button>
+                        </form>
+                        <button className = "mt-5" onClick = {onBackClick}>Back</button>
+                    </div>
+                    ): (
+                     <div>not city or country</div>
                     )}
                 </div>
             </div>
