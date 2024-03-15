@@ -1,9 +1,24 @@
 import React from 'react'
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "@/util/firebase";
+import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
+import { auth } from "@/auth/auth";
 import { useRouter } from 'next/router';
 import GoogleButton from 'react-google-button'
-export const handleSigndin = async () => {
+export const validateToken = async (token) => {
+    const provider = new GoogleAuthProvider();
+
+};
+
+export const signOut = async () => {
+
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
+    });
+};
+
+export const handleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
         const result = await signInWithPopup(auth, provider);
@@ -11,18 +26,19 @@ export const handleSigndin = async () => {
         const token = credential.accessToken;
         window.localStorage.setItem("token", token);
         window.localStorage.setItem("email", result.user.email);
+        console.log("sign in ");
         //router.push("/");
     } catch (error) {
         console.log("error", error);
     }
 };
-const auth = () => {
+const Auth = () => {
     return (
         <GoogleButton
             type="light" // can be light or dark
-            onClick={() => { console.log('Google button clicked') }}
+            onClick={handleSignIn}
         />
     )
 }
 
-export default auth
+export default Auth
