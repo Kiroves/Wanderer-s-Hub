@@ -1,10 +1,13 @@
 "use client";
-import { useRouter } from 'next/navigation'
-export default function Home() {
-  const router = useRouter()
+import Button from '@/components/Button';
+import Donut from '@/components/Donut';
+
+export default function Page() {
+
   return (
-    <body className = "bg-gray">
-      <button type = 'button' onClick={() => router.push('/login')} className="bg-green-500 text-white px-4 py-2 rounded-full">I have an account</button>
-    </body>
+    <div className="relative h-screen">
+      <Donut/>
+      <Button/>
+    </div>
   );
 }
