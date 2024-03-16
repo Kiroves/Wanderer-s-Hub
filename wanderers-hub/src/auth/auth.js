@@ -11,7 +11,6 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_REACT_APP_FIREBASE_APP_ID,
     measurementId: process.env.NEXT_PUBLIC_REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
 };
-
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 // Listen for authentication state change

@@ -1,0 +1,6 @@
+.background {
+    background-image: url('/bg.png');
+        background-size: cover;
+        /* This will resize the background image to cover the entire element */
+        background-repeat: no-repeat;
+}
