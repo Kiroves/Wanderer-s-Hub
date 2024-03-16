@@ -17,7 +17,7 @@ export default function Page() {
         <Title/>
         <HomepageText/>
         <Navbar />
-        <Button />
+        <Button text = "a" function = {null}/>
         <Login />
       </div>
   );

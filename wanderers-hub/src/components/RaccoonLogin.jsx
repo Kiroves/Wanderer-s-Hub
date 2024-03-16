@@ -7,8 +7,7 @@ const RaccoonLogin = () => {
   const scene = new THREE.Scene();
   const modelRef = useRef(null);
   const modelLoaded = useRef(false);
-  const axis = new THREE.Vector3(1,7,1).normalize();
-  const axis2 = new THREE.Vector3(-4,-8,-7)
+  const axis = new THREE.Vector3(1,5,1).normalize();
   var left = true;
     useEffect(() => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -19,16 +18,18 @@ const RaccoonLogin = () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         const vw = window.innerWidth * 0.01;
         const vh = window.innerHeight * 0.01;
-        camera.position.set(4 * vw, 3 * vh, -3 * vh); // Adjust coefficients as needed
-        camera.lookAt(axis2);
+        camera.rotation.x = -Math.PI/vw*1.5
+        camera.rotation.z = 0
+        camera.position.set(4 * vw, 3 * vh, 8 * vh); // Adjust coefficients as needed
+
         const loader = new GLTFLoader();
        // const controls = new OrbitControls(camera, renderer.domElement);
         loader.load('/low_poly_raccoon.glb', gltf => {
           if (!modelLoaded.current) {
             const raccoon = gltf.scene;
             raccoon.scale.set(5, 5, 5);
-            raccoon.position.set(0, 0, 0);
-            //raccoon.rotateOnAxis(axis, 0);
+            raccoon.position.set(2, 15, 10);
+            raccoon.rotateOnAxis(axis, -2);
             scene.add(raccoon);
             modelRef.current = raccoon;
             modelLoaded.current = true;
