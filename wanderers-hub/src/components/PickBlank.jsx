@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import axios from 'axios';
 import Image from 'next/image';
 import Cities from './Cities';
+import Button from './Button';
 import Exclude from './Exclude';
 const PickBlank = () => {
     const successToast = () => {
@@ -18,6 +19,7 @@ const PickBlank = () => {
         });
     };
     const router = useRouter();
+    const router2 = useRouter();
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
     const [stage, setStage] = useState('country');
@@ -129,10 +131,9 @@ const PickBlank = () => {
                                         onChange={handleInputChange} />
                                     <button type="submit" onClick={next}>Next</button>
                                 </form>
-                                <div className=" w-64 h-16 px-7 py-3 bg-gradient-to-b from-purple-500 to-blue-400 rounded-lg shadow-inner border border-blue-700 border-opacity-30 backdrop-blur-lg justify-center items-center gap-3 inline-flex">
-                                    <div className="text-center text-white text-xl font-medium font-['Inter'] leading-tight">GET STARTED</div>
-                                </div>
+                                <Button text="a" function={null} />
                                 <button className="mt-5" onClick={changeState}>Back</button>
+                                <Button text="Let us Choose" function={() => router2.push('./picklocation/choose')} />
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,7 @@ const RaccoonLogin = () => {
         loader.load('/low_poly_raccoon.glb', gltf => {
           if (!modelLoaded.current) {
             const raccoon = gltf.scene;
-            raccoon.scale.set(5, 5, 5);
+            raccoon.scale.set(4, 5, 5);
             raccoon.position.set(2, 15, 10);
             raccoon.rotateOnAxis(axis, -2);
             scene.add(raccoon);
@@ -42,7 +42,7 @@ const RaccoonLogin = () => {
         //const lightHelper = new THREE.PointLightHelper(pointLight);
         //const gridHelper = new THREE.GridHelper(200, 50);
         scene.add(pointLight);
-        pointLight.position.set(-3 * vw, 3 * vh, -4 * vh);
+        pointLight.position.set(-1.5 * vw, 6 * vh, -1 * vh);
 
        // const axesHelper = new THREE.AxesHelper(10); // Length of each axis
         //scene.add(axesHelper);

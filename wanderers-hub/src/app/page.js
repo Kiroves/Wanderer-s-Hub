@@ -11,13 +11,16 @@ import Title from '@/components/Title.jsx';
 import HomepageText from '@/components/HomepageText.jsx';
 
 export default function Page() {
+  const router = new useRouter();
   return (
       <div className="relative h-screen">
         <Homepagebg/>
         <Title/>
         <HomepageText/>
         <Navbar />
-        <Button text = "a" function = {null}/>
+        <div className = "absolute top-96 left-48">
+          <Button text = "Get Started" function = {() => router.push('./picklocation')}/>
+        </div>
         <Login />
       </div>
   );
