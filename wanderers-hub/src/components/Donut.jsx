@@ -19,7 +19,7 @@ const Donut = () => {
         loader.load('/low_poly_raccoon.glb', gltf => {
             const model = gltf.scene;
             model.scale.set(5, 5, 5);
-            model.position.set(-30, 10, -15);
+            model.position.set(-30, 10, -16);
             model.rotation.y = -Math.PI/1.5
             model.rotation.x = Math.PI/10
             scene.add(model);
@@ -27,12 +27,16 @@ const Donut = () => {
 
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
         scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xffffff, 1000);
+        //const lightHelper = new THREE.PointLightHelper(pointLight);
+        scene.add(pointLight);
+        pointLight.position.set(-35, 20, -1);
 
         const bg = new THREE.TextureLoader().load('/racbg.png');
         scene.background = bg;
         function animate(){
             requestAnimationFrame(animate);
-            //controls.update()
+           // controls.update()
             renderer.render(scene, camera);
         }
         animate();

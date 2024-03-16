@@ -27,7 +27,7 @@ export const handleSignIn = async () => {
         window.localStorage.setItem("token", token);
         window.localStorage.setItem("email", result.user.email);
         console.log("sign in ");
-        //router.push("/");
+        router.push("/picklocation");
     } catch (error) {
         console.log("error", error);
     }
