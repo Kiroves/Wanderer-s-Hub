@@ -1,23 +1,34 @@
 import React, { useState } from 'react'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const PickBlank = () => {
     const router = useRouter();
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
-    const [stage, setStage] = useState('country')
+    const [stage, setStage] = useState('country');
+    const [cities, setCities] = useState([]);
 
     const selectCountry = (val) => {
         setCountry(val);
     }
-
-    const selectCity = (event) => {
-        event.preventDefault(); // Prevent default form submission
-        setCity(event); // Extract city value from form
+    const getCities = async () => {
+        axios.post('https://countriesnow.space/api/v0.1/countries/cities', {
+            country: 'nigeria'
+        })
+            .then(response => {
+                // Update the cities state with the response data
+                setCities(response.data);
+                console.log(cities);
+            })
+            .catch(error => {
+                console.log("error");
+            });
     }
-    const changeState = () => {
+    const changeState = async () => {
         if (stage == 'country') {
+            await getCities();
             setStage('city');
         }
         else if (stage == 'city') {
