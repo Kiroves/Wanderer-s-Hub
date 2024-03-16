@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 
-const Exclude = () => {
+const Exclude = ({ func }) => {
     const [selected, setSelected] = useState([]);
     const [countries, setCountries] = useState([]);
 
@@ -22,6 +22,7 @@ const Exclude = () => {
 
     const handleMultiSelectChange = (selectedOptions) => {
         setSelected(selectedOptions);
+        func(selectedOptions);
     };
 
     useEffect(() => {
