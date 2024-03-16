@@ -20,7 +20,7 @@ const Homepagebg = () => {
           renderer.setSize(window.innerWidth, window.innerHeight);
           const vw = window.innerWidth * 0.01;
           const vh = window.innerHeight * 0.01;
-          camera.rotation.x = -Math.PI/vw*1.5
+          camera.rotation.x = -Math.PI/vw*2
           camera.rotation.z = 0
           camera.position.set(4 * vw, 3 * vh, 8 * vh); // // Adjust coefficients as needed
   
@@ -32,6 +32,7 @@ const Homepagebg = () => {
               const raccoon = gltf.scene;
               raccoon.scale.set(5, 5, 5);
               raccoon.position.set(0, 0, 0);
+              raccoon.rotation.y -= Math.PI/2
               scene.add(raccoon);
               modelRaccoon.current = raccoon;
               modelLoadedRaccoon.current = true;
@@ -42,8 +43,9 @@ const Homepagebg = () => {
           loader.load('/low_poly_camel.glb', gltf => {
             if (!modelLoadedCamel.current) {
               const camel = gltf.scene;
-              camel.scale.set(0.5, 0.5, 0.5);
-              camel.position.set(5, 0, 0);
+              camel.scale.set(1, 1, 1);
+              camel.position.set(20, 0, 5);
+              camel.rotation.y -= Math.PI
               scene.add(camel);
               modelCamel.current = camel;
               modelLoadedCamel.current = true;
