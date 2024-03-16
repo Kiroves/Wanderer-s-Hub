@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Auth from './auth';
 import { X } from 'lucide-react';
-import Donut from './Donut';
+import RaccoonLogin from './RaccoonLogin';
 
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +21,9 @@ const Login = () => {
 
       <div className={`fixed top-0 right-0 h-full w-96 z-10 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="relative">
-          <Donut />
+          <div className = "absolute">
+            <RaccoonLogin />
+          </div>
            <button className="bg-transparent text-black px-4 py-2 rounded absolute top-0 right-0" onClick={toggleLogin}>
             <X />
           </button>

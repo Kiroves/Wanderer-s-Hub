@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Donut = () => {
+const RaccoonLogin = () => {
   const scene = new THREE.Scene();
   const modelRef = useRef(null);
   const modelLoaded = useRef(false);
@@ -12,15 +12,15 @@ const Donut = () => {
     useEffect(() => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({
-        canvas: document.querySelector('#bg'),
+        canvas: document.querySelector('#login-bg'),
         });
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.rotation.x = -Math.PI/6
-        camera.rotation.z = -Math.PI/12
-        camera.position.setX(30);
-        camera.position.setY(10);
-        camera.position.setZ(55);
+        const vw = window.innerWidth * 0.01;
+        const vh = window.innerHeight * 0.01;
+        camera.rotation.x = -Math.PI/vw*1.5
+        camera.rotation.z = 0
+        camera.position.set(4 * vw, 3 * vh, 8 * vh); // Adjust coefficients as needed
 
         const loader = new GLTFLoader();
        // const controls = new OrbitControls(camera, renderer.domElement);
@@ -42,7 +42,7 @@ const Donut = () => {
         //const lightHelper = new THREE.PointLightHelper(pointLight);
         //const gridHelper = new THREE.GridHelper(200, 50);
         scene.add(pointLight);
-        pointLight.position.set(-35, 20, -1);
+        pointLight.position.set(-3 * vw, 3 * vh, -4 * vh);
 
        // const axesHelper = new THREE.AxesHelper(10); // Length of each axis
         //scene.add(axesHelper);
@@ -76,8 +76,8 @@ const Donut = () => {
 
 
   return (
-    <canvas id="bg" className="absolute inset-0 w-full h-full bg-transparent"></canvas>
+    <canvas id="login-bg" className="absolute inset-0 w-full h-full"></canvas>
   )
 }
 
-export default Donut
+export default RaccoonLogin
