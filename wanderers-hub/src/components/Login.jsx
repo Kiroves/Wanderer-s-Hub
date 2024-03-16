@@ -18,10 +18,10 @@ const Login = () => {
         </button>
       </div>
 
-      <div className={`fixed top-0 right-0 h-full w-96 bg-white z-10 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed top-0 right-0 h-full w-96 z-10 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className = "flex justify-end">
           <div className="absolute inset-0 z-0">
-              <Donut className = "bg-gradient-to-b from-red-400/95 to-white/50"/>
+              <Donut/>
           </div>
           <button className="bg-transparent text-black px-4 py-2 rounded" onClick={toggleLogin}>
             <X/>

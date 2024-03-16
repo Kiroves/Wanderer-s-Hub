@@ -1,23 +1,46 @@
 import React, { useState } from 'react'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { useRouter } from 'next/navigation';
+import { toast } from "react-toastify";
+import axios from 'axios';
 
 const PickBlank = () => {
+    const successToast = () => {
+        toast.success("Success !", {
+            position: "bottom-right",
+        });
+    };
+    const failToast = () => {
+        toast.error("Error Retrieving Cities !", {
+            position: "bottom-right",
+        });
+    };
     const router = useRouter();
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
-    const [stage, setStage] = useState('country')
+    const [stage, setStage] = useState('country');
+    const [cities, setCities] = useState([]);
 
     const selectCountry = (val) => {
         setCountry(val);
     }
-
-    const selectCity = (event) => {
-        event.preventDefault(); // Prevent default form submission
-        setCity(event); // Extract city value from form
+    const getCities = async () => {
+        try {
+            const response = await axios.post('https://countriesnow.space/api/v0.1/countries/cities', {
+                country: country
+            });
+            successToast();
+            // Update the cities state with the response data
+            setCities(response.data);
+            console.log(response.data); // Make sure data is received correctly
+        } catch (error) {
+            failToast();
+            console.error("Error fetching cities:", error);
+        }
     }
-    const changeState = () => {
+    const changeState = async () => {
         if (stage == 'country') {
+            await getCities();
             setStage('city');
         }
         else if (stage == 'city') {

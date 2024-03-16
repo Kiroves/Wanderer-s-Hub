@@ -3,9 +3,8 @@ import React, { useEffect } from "react";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Donut = ({bgColor}) => {
-    const scene = new THREE.Scene("");
-    scene.background = new THREE.Color(bgColor);
+const Donut = () => {
+  const scene = new THREE.Scene();
     useEffect(() => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({
@@ -16,7 +15,7 @@ const Donut = ({bgColor}) => {
         camera.position.setZ(30);
 
         const loader = new GLTFLoader();
-        const controls = new OrbitControls(camera, renderer.domElement);
+        //const controls = new OrbitControls(camera, renderer.domElement);
         loader.load('/low_poly_raccoon.glb', gltf => {
             const model = gltf.scene;
             model.scale.set(5, 5, 5);
@@ -29,14 +28,11 @@ const Donut = ({bgColor}) => {
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
         scene.add(ambientLight);
 
-        const pointLight = new THREE.PointLight(0xffffff, 1); // White point light
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
-
-
+        const bg = new THREE.TextureLoader().load('/racbg.png');
+        scene.background = bg;
         function animate(){
             requestAnimationFrame(animate);
-            controls.update()
+            //controls.update()
             renderer.render(scene, camera);
         }
         animate();
