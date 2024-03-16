@@ -22,7 +22,7 @@ const Login = () => {
       <div className={`fixed top-0 right-0 h-full w-96 z-10 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="relative">
           <Donut />
-          <button className="bg-transparent text-black px-4 py-2 rounded absolute top-0 right-0" onClick={toggleLogin}>
+           <button className="bg-transparent text-black px-4 py-2 rounded absolute top-0 right-0" onClick={toggleLogin}>
             <X />
           </button>
           <div className = "flex flex-col items-center absolute mt-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
