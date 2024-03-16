@@ -27,8 +27,8 @@ const GoogleMapsComponent = () => {
     }
   };
     return (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <button onClick={searchPlace("vancouver")} className="bg-green-500 text-white px-4 py-2 rounded-full">go</button>
+        <div className="absolute top-0 left-0">
+              <button onClick={() => searchPlace("vancouver")} className="bg-green-500 text-white px-4 py-2 rounded-full">test</button>
         </div>
     );
 };

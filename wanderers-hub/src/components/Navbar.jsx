@@ -2,8 +2,13 @@ import React from 'react'
 
 const Navbar = () => {
     return (
-        <div>
+        <div className='flex space-betwee'>
+            <div>
 
+            </div>
+            <div>
+
+            </div>
         </div>
     )
 }
