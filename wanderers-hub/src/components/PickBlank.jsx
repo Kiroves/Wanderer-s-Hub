@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { useRouter } from 'next/navigation';
+import { toast } from "react-toastify";
 import axios from 'axios';
 
 const PickBlank = () => {
+    const successToast = () => {
+        toast.success("Success !", {
+            position: "bottom-right",
+        });
+    };
+    const failToast = () => {
+        toast.error("Error Retrieving Cities !", {
+            position: "bottom-right",
+        });
+    };
     const router = useRouter();
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
@@ -14,17 +25,18 @@ const PickBlank = () => {
         setCountry(val);
     }
     const getCities = async () => {
-        axios.post('https://countriesnow.space/api/v0.1/countries/cities', {
-            country: 'nigeria'
-        })
-            .then(response => {
-                // Update the cities state with the response data
-                setCities(response.data);
-                console.log(cities);
-            })
-            .catch(error => {
-                console.log("error");
+        try {
+            const response = await axios.post('https://countriesnow.space/api/v0.1/countries/cities', {
+                country: country
             });
+            successToast();
+            // Update the cities state with the response data
+            setCities(response.data);
+            console.log(response.data); // Make sure data is received correctly
+        } catch (error) {
+            failToast();
+            console.error("Error fetching cities:", error);
+        }
     }
     const changeState = async () => {
         if (stage == 'country') {

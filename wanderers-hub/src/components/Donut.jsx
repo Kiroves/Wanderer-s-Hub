@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 import React, { useEffect } from "react";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Donut = () => {
-    const scene = new THREE.Scene();
-
+  const scene = new THREE.Scene();
     useEffect(() => {
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({
@@ -14,40 +14,41 @@ const Donut = () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.position.setZ(30);
 
-        const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-        const material = new THREE.MeshStandardMaterial({ color: 0xFF6347});
-        const torus = new THREE.Mesh(geometry, material);
-        scene.add(torus);
+        const loader = new GLTFLoader();
+        //const controls = new OrbitControls(camera, renderer.domElement);
+        loader.load('/low_poly_raccoon.glb', gltf => {
+            const model = gltf.scene;
+            model.scale.set(5, 5, 5);
+            model.position.set(-30, 10, -16);
+            model.rotation.y = -Math.PI/1.5
+            model.rotation.x = Math.PI/10
+            scene.add(model);
+        });
 
-        const pointLight = new THREE.PointLight(0xffffff);
-        pointLight.position.set(5,5,5);
-        
-        const ambientLight = new THREE.AmbientLight(0xffffff);
-        scene.add(ambientLight)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Soft white light
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0xffffff, 1000);
+        //const lightHelper = new THREE.PointLightHelper(pointLight);
+        scene.add(pointLight);
+        pointLight.position.set(-35, 20, -1);
 
-        const controls = new OrbitControls(camera, renderer.domElement);
-
+        const bg = new THREE.TextureLoader().load('/racbg.png');
+        scene.background = bg;
         function animate(){
             requestAnimationFrame(animate);
-            torus.rotation.x += 0.01;
-            torus.rotation.y += 0.005;
-            torus.rotation.z += 0.01;
-            controls.update()
+           // controls.update()
             renderer.render(scene, camera);
         }
         animate();
 
-        // Cleanup function for unmounting
         return () => {
-        scene.remove(torus);
-        // Clean up other resources as needed
         };
 
     }, []);
 
 
   return (
-    <canvas id="bg" className="absolute inset-0 w-full h-full"></canvas>
+    <canvas id="bg" className="absolute inset-0 w-full h-full bg-transparent"></canvas>
   )
 }
 
