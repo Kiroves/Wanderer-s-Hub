@@ -11,6 +11,7 @@ const Login = () => {
   };
 
   return (
+
     <div className="relative">
       <div className="flex justify-end">
         <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={toggleLogin}>
@@ -25,7 +26,7 @@ const Login = () => {
             <X />
           </button>
           <div className = "flex flex-col items-center absolute mt-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div className = "text-white text-4xl mb-10">Sign in</div>
+            <div className = "text-white font-sans text-4xl mb-10">Sign in</div>
             <Auth/>
           </div>
         </div>
