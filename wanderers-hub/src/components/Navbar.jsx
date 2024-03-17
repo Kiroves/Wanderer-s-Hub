@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { MoveRight } from 'lucide-react';
+import About from './About';
 
 const Navbar = () => {
     return (
@@ -11,9 +12,13 @@ const Navbar = () => {
         <div className = 'absolute left-[1134px] top-[25px] w-[210px] h-11 bg-[#757683] rounded'></div>
         <div className='flex flex-col relative top-9 left-[550px] items-center h-[60px] text-[#757683] font-inter font-semibold'>
         <div className='w-[800px] flex justify-between items-center'>
-            <div className='text-center'>
-                About
+            <div className="relative text-center">
+                <div>About</div>
+                <div className="absolute top-0 left-0 w-full h-full">
+                    <About/>
+                </div>
             </div>
+
             <div className='text-center'>
                 Meet the Animals
             </div>
