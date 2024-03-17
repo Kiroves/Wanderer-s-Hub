@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import countryWanderers from '@/app/api/openAI';
 import Button from './Button';
@@ -11,14 +12,13 @@ const Results = async () => {
         if (no !== null) {
             const noResult = await handler.queryWanderers(no);
             console.log(no);
-            console.log("gabe fore real on god");
             console.log(noResult);
         }
         if (storageCity !== null) {
-            const noResult = await handler.queryWanderers(no);
-            console.log(no);
-            console.log("gabe fore real on god");
-            console.log(noResult);
+            const cityResult = await handler.queryActivity(storageCity, storageCountry);
+            console.log(storageCity);
+            console.log(storageCountry);
+            console.log(cityResult);
         }
     }
     return (

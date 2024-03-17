@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { useRouter } from 'next/navigation';
 import { toast } from "react-toastify";
@@ -29,7 +29,9 @@ const PickBlank = () => {
     const [stage, setStage] = useState('country');
     const [cities, setCities] = useState([]);
     const [savedCities, setSavedCities] = useState('');
-    sessionStorage.clear();
+    useEffect(() => {
+        sessionStorage.clear();
+    }, []);
     const handleClick = () => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
