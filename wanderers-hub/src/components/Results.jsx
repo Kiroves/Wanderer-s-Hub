@@ -19,10 +19,10 @@ const Results = () => {
             router.push('/')
         }
     });
-    //if (loading === true) {
-    //    return (
-    //        <Loading />)
-    //}
+    if (loading === true) {
+        return (
+            <Loading />)
+    }
     const handler = new countryWanderers();
     const api = async () => {
         const no = sessionStorage.getItem('no');
