@@ -15,7 +15,6 @@ export default function Page() {
       <div className="relative h-screen">
         <Homepagebg/>
         <HomepageText/>
-        <Navbar />
         <div className = "absolute top-[425px] left-[125px]">
         <button
   onClick={() => router.push('/picklocation')}
@@ -29,18 +28,10 @@ export default function Page() {
     Start My Journey
   </div>
 </button>
-
-
-
-
-
-
-
-
         </div>
         <Login />
-        <div className = "absolute top-[-100px] left-[95px]">
-          <Title />
+        <div className = "absolute top-[425px] left-[125px]">
+           
         </div>
       </div>
   );

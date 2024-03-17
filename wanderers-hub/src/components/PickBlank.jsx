@@ -110,7 +110,7 @@ const PickBlank = () => {
                                                 <div className="pl-3 text-white text-lg font-light font-sans pt-4">Can’t Decide? Let Us</div>
                                                 <div className="pl-3 text-white text-lg font-light font-sans pb-4">Help You Choose</div>
                                                 <div className="pl-3">
-                                                    <Button function={changeState} text={"Let Us Choose"} />
+                                                    <Button function={() => router.push('/picklocation/choose')} text={"Let Us Choose"} />
                                                 </div>
                                                 <div className="pt-6 flex flex-row">
                                                     <div>

@@ -1,15 +1,9 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Navbar = () => {
     return (
-        <div className='flex space-betwee'>
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-        </div>
+            <Image src = "/title.png" width = {350} height = {100}/>
     )
 }
 

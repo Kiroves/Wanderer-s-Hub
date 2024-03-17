@@ -103,7 +103,7 @@ const Homepagebg = () => {
         
          // const axesHelper = new THREE.AxesHelper(10); // Length of each axis
           //scene.add(axesHelper);
-          const bg = new THREE.TextureLoader().load('/bg.png');
+          const bg = new THREE.TextureLoader().load('/bgsat.png');
           scene.background = bg;
           function animate() {
             requestAnimationFrame(animate);
@@ -112,9 +112,9 @@ const Homepagebg = () => {
             const time = performance.now() / 1000; 
         
             const phaseRaccoon = 0;
-            const phaseCamel = 0.25;
-            const phaseBaboon = 0.5;
-            const phasePBear = 0.75;
+            const phaseCamel = 0.5;
+            const phaseBaboon = 0.75;
+            const phasePBear = 1;
         
             const bounceHeight = 0.75; 
             const speed = 2; 
