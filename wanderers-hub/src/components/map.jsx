@@ -61,7 +61,7 @@ const GoogleMapsComponent = () => {
         </div>
 
       )}
-        <button onClick={() => searchPlace("Vancouver",49.2827, 123.1207)} className="bg-green-500 text-white px-4 py-2 rounded-full">
+        <button onClick={() => searchPlace("Vancouver",49.2827, -123.1207)} className="bg-green-500 text-white px-4 py-2 rounded-full">
           Search Place
         </button>
       </div>
