@@ -75,7 +75,7 @@ export default class countryWanderers {
         query: [],
     }
     async getLatLngCity(city, country) {
-        res = '';
+        var res = '';
         try {
             cohere = new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
@@ -91,7 +91,7 @@ export default class countryWanderers {
         return res.generate[0].text;
     };
     async getLatLngCountry(country) {
-        res = '';
+        var res = '';
         try {
             cohere = new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
@@ -116,7 +116,7 @@ export default class countryWanderers {
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
 
-            //const no = noAllowed.map(obj=>obj.value);
+            //const no = noAllowed.map(obj=>obj.split(' '));
             for (let i = 0; i < 4; i++) {
                 this.membersJson.query.push(this.membersJson.members[i].settings + " DO NOT CONSIDER THESE COUNTRIES: " + noAllowed.toString());
                 res = await cohere.generate({
