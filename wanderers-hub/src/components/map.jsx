@@ -29,72 +29,49 @@ const GoogleMapsComponent = () => {
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
+        
       });
-      const latLonPromises = firstWords.map(async (word) => {
-        try {
-          const latlon = await handler.getLatLngCountry(word);
-          console.log(latlon);
-          return latlon;
-        } catch (error) {
-          // Handle errors if needed
-          console.error(`Error fetching latlng for ${word}:`, error);
-          return null;
-        }
+      const answer = searchPlace(firstWords[0], 5).then(result=>{
+        console.log(result);
       });
-      const lats = [];
-      const lons = [];
-
-      Promise.all(latLonPromises)
-        .then((latLons) => {
-          const lats = [];
-          const lons = [];
-          console.log(latLons);
-          latLons.forEach(latlon => {
-            if (latlon) {
-              const [lat, lon] = latlon.trim().split(' ');
-              lats.push(parseFloat(lat));
-              lons.push(parseFloat(lon));
-            }
-          });
-          console.log(lats);
-          // Now you can use lats and lons here
-          console.log(lats[0]);
-          console.log(searchPlace(firstWords[0], lats[0], lons[0]));
-        })
-        .catch((error) => {
-          // Handle errors if needed
-          console.error("Error fetching latlng for multiple countries:", error);
-        });
-
       //console.log(photo);
     }
     else if (storageCity !== null) {
       const cityResult = await handler.queryActivity(storageCity, storageCountry);
-      const firstword = cityResult.split(' ')[0];
-      const latlon = await handler.getLatLngCity(storageCity, storageCountry);
-      const lat = latlon.split(' ')[0];
-      const lon = latlon.split(' ')[1];
-      setPhotos(searchPlace(firstword, lat, lon));
-      console.log(photo);
+      const firstWords = cityResult.map(sentence => {
+        // Split the sentence by whitespace
+        const words = sentence.trim().split(/[\n\s\\]+/);
+        // Return the first word after trimming any leading/trailing whitespace
+        return words[0];
+        
+      });
+      const answer = searchPlace(firstWords[0]+storageCity+storageCountry, 12).then(result=>{
+        console.log(result);
+      });
+      
     }
     else if (storageCountry !== null) {
       const countryResult = await handler.queryCity(storageCountry);
-      const firstword = countryResult.split(' ')[0];
-      const latlon = await handler.getLatLngCity(firstword, storageCountry);
-      const lat = latlon.split(' ')[0];
-      const lon = latlon.split(' ')[1];
-      setPhotos(searchPlace(firstword, lat, lon));
-      console.log(photo);
+      const firstWords = countryResult.map(sentence => {
+        // Split the sentence by whitespace
+        const words = sentence.trim().split(/[\n\s\\]+/);
+        // Return the first word after trimming any leading/trailing whitespace
+        return words[0];
+        
+      });
+      const answer = searchPlace(firstWords[0]+storageCountry, 7).then(result=>{
+        console.log(result);
+      });
     }
     else {
       console.log("oops")
     }
   }
-  const searchPlace = async (q, lat, lng) => {
+  const searchPlace = async (q, zoom) => {
 
-    var center = { lat: lat, lng: lng };
+    var center = { lat: 0, lng: 0 };
     map = new google.maps.Map(
-      document.getElementById('map'), { center, zoom: 7 }
+      document.getElementById('map'), { center:center, zoom: 0 }
     )
     var request = {
       query: q,
@@ -115,15 +92,28 @@ const GoogleMapsComponent = () => {
       placeId: placeId,
       fields: ['photos']
     };
-    const opts = {
-      maxHeight: int,
-      maxWidth: int,
-    };
+
+    var geocoder= new google.maps.Geocoder();
+    var mapOptions={
+      placeId: placeId,
+    }
+    var latlonMap;
+    await geocoder.geocode(mapOptions, function(results,status){
+      if(status===google.maps.GeocoderStatus.OK){
+        console.log(results);
+        console.log(results[0].geometry.location);
+        latlonMap=results[0].geometry.location;
+      }
+    });
+    map = new google.maps.Map(
+      document.getElementById('map'), { center:latlonMap, zoom: zoom }
+    );
+    
     await service.getDetails(request, function (results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results.photos[1].getUrl());
         for (let i = 0; i < 5; i++) {
-          references.push(results.photos[i].getUrl([opts]));
+          references.push(results.photos[i].getUrl());
         }
       }
     });
@@ -135,8 +125,8 @@ const GoogleMapsComponent = () => {
       libraries={['places']}
     >
 
-      <div className="flex h-screen items-center justify-center">
-        <div id='map' className="bg-green-500 text-white box-border h-32 w-32 p-4 border-4 rounded-md">map</div>
+      <div className="flex w-[400px] h-screen items-center justify-center">
+        <div id='map' className="absolute bg-green-500 text-white box-border h-screen w-96 p-4 border-4 rounded-md">map</div>
       </div>
       <div className="absolute bottom-0 left-0">
         <button onClick={api} className="bg-green-500 text-white px-4 py-2 rounded-full">
