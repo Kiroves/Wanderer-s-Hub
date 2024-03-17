@@ -6,12 +6,11 @@ import { useRouter } from 'next/navigation';
 import { auth } from "@/auth/auth";
 import Loading from './loading';
 import GoogleMapsComponent from './map';
+
 const Results = () => {
     const router = useRouter();
     const [state, changeState] = useState('');
     const [loading, setloading] = useState(true);
-    const [photo, setPhotos] = useState([]);
-    const [selected, changeSelected] = useState(0);
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -26,7 +25,6 @@ const Results = () => {
     }
     return (
         <>
-            <Button function={() => { }} text={"gabeforreal"} />
         </>
     )
 }

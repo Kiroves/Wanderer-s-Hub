@@ -8,7 +8,6 @@ import ResultsAnimals from '@/components/ResultsAnimals';
 export default function Page() {
     return (
         <div className="relative bg-[url('/resultsbg.png')] bg-screen bg-cover bg-center bg-no-repeat h-screen">
-            <ResultsAnimals />
             <div className="absolute">
                 <Results />
             </div>

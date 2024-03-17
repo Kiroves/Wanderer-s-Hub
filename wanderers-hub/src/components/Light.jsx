@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Light = ({setState}) => {
+const Light = ({state, setState}) => {
     const [lit1, setLit1] = useState(false);
     const [lit2, setLit2] = useState(false);
     const [lit3, setLit3] = useState(false);

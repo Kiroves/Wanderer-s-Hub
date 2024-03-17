@@ -16,7 +16,6 @@ const ResultsBox = () => {
  
   const setSelectedFunc = (val) => {
     setSelected(val);
-    console.log(selected);
   }
 
   const setBodyFunc = (val) => {
@@ -30,13 +29,14 @@ const ResultsBox = () => {
     router.push('/');
 }
   return (<div>
-      <div className = "relative"/>
+      <div className = "relative">
+        <div className = "absolute">
+              <ResultsAnimals/>
+          </div>
         <div className = "absolute left-[800px] top-[80px]">
-            <Light setState = {setSelectedFunc}/>
+            <Light state = {selected} setState = {setSelectedFunc}/>
           </div>
-          <div className = "absolute">
-              <ResultsAnimals />
-          </div>
+        </div>
     {selected == -1 ? (
     <div>
       <div className="relative left-[100px] top-[90px] w-[650px] h-[600px] bg-opacity-25 bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
