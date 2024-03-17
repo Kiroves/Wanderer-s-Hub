@@ -10,7 +10,7 @@ var references=[];
 
 const GoogleMapsComponent = () => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
-  
+   
   const handler = new countryWanderers();
   //center needs to be google.maps.LatLng(lat,lng);
   const api = async () => {
