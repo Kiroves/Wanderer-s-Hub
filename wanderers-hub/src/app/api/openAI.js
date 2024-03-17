@@ -81,7 +81,7 @@ export default class countryWanderers {
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
             res= await cohere.generate({
-                prompt:'Only give the latitude longitude of using negative for west and south and positives for north and east'+city+', '+ country+' AND NO OTHER TEXT ONLY NUMBERS',
+                prompt:'Use only number give the latitude and longitude of '+city+ country +'using negatives for west and south and positives for north and east',
                 maxTokens:150,
             })
             
@@ -97,7 +97,7 @@ export default class countryWanderers {
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
             res= await cohere.generate({
-                prompt:'Only give the latitude longitude of '+country+' AND NO OTHER TEXT ONLY NUMBERS',
+                prompt:'Use only number give the latitude and longitude of '+ country +'using negatives for west and south and positives for north and east',
                 maxTokens:150,
             })
             
