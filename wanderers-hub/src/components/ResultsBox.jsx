@@ -74,7 +74,7 @@ const ResultsBox = () => {
             {/* {words[0]} */}
             <div className = "pt-10">
               <div className="text-[20px] overflow-auto max-h-[350px]"> {/* Adjust width and max height as needed */}
-                {/* {resultBody[selected]} */}
+                  
               </div>
             </div>
             <div className = "flex flex-row pt-3">

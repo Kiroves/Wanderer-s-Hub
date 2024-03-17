@@ -8,7 +8,7 @@ var placeId = '';
 var references = [];
 
 
-const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
+const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading}) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
   const [body,setBody]=useState([]);
   useEffect(() => {
@@ -18,7 +18,10 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
   }, []);
   
   useEffect(() => {
-    api();
+    if(selected!=-1){
+      api();
+    }
+    
   }, [selected]);
   
   const handler = new countryWanderers();
@@ -47,7 +50,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         return words[0];
         
       });
-      if(select!=-1)
+      if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
           setPhotosArray(result);
@@ -71,7 +74,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         return words[0];
         
       });
-      if(select!=-1)
+      if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
           setPhotosArray(result);
@@ -93,7 +96,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         return words[0];
         
       });
-      if(select!=-1)
+      if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
           setPhotosArray(result);
@@ -146,15 +149,22 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
       document.getElementById('map'), { center:latlonMap, zoom: zoom }
     );
     
-    await service.getDetails(request, function (results, status) {
+    service.getDetails(request, function (results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(results.photos[1].getUrl());
         for (let i = 0; i < 5; i++) {
           references.push(results.photos[i].getUrl());
         }
       }
+    }).then((result)=>{
+      setLoading(false);
+      return references;
+      
+    }).catch((e)=>{
+      return e;
     });
-    return references;
+    
+    
   };
   return (
     <LoadScript
@@ -163,7 +173,9 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
     >
 
       <div className="relative">
-        <div id = "map" className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]"></div>
+        <div id = 'map' className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]">
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+        </div>
       </div>
     </LoadScript>
   );
