@@ -13,7 +13,9 @@ import Outer from '@/components/Outer.jsx';
 export default function Page() {
   return (
     <div className="relative h-screen">
-      <Homepagebg />
+      <div>
+        <Homepagebg />
+      </div>
       <HomepageText />
       <Outer />
       <div className="absolute top-0 left-0">
