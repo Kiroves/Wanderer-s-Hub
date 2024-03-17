@@ -5,7 +5,7 @@ import Button from '@/components/Button.jsx';
 import Login from '@/components/Login';
 import { useRouter } from 'next/navigation';
 import './pagestyles.css'
-import Navbar from '@/components/navbar.jsx';
+import Navbar from '@/components/Navbar.jsx';
 import Homepagebg from '@/components/Homepagebg.jsx';
 import Title from '@/components/Title.jsx';
 import HomepageText from '@/components/HomepageText.jsx';
@@ -30,8 +30,8 @@ export default function Page() {
 </button>
         </div>
         <Login />
-        <div className = "absolute top-[425px] left-[125px]">
-           
+        <div className = "absolute top-0 left-0">
+           <Navbar/>
         </div>
       </div>
   );
