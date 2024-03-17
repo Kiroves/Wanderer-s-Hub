@@ -148,6 +148,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
           references.push(results.photos[i].getUrl());
         }
         console.log(references);
+        setLoading(false);
         setPhotosArray(references);
       }
     }).then((result)=>{
