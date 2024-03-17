@@ -17,7 +17,6 @@ const Cities = ({ cities, func }) => {
             <Select
                 defaultValue={[]}
                 value={selected}
-                isMulti
                 theme={(theme) => ({
                     ...theme,
                     borderRadius: 0,
