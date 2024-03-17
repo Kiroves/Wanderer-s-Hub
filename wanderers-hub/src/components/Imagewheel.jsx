@@ -8,7 +8,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const Imagewheel = (photos) => {
+const Imagewheel = ({photos}) => {
     //const photos = ['https://lh3.googleusercontent.com/places/ANXAkqGr1G6nhZn5F7CImt5Gpcj9lAsg0TcsZt4TIz3Yf_RFpKIulFPrhTsmysG_rso6ZLLl0I7BsoBI89u0k3Omm7Hr80AiMm9IdDk=s1600-w1868', 'https://lh3.googleusercontent.com/places/ANXAkqGtnqOQKUYAEaH_apjSCYs1l9nKY33KyrmqTsl5tMQ8Tmv4Ldcob7pDxBELSysLmkHKovDi7XGJ3DBT2A5kmgWQ8BkmrgLpyVQ=s1600-w4000', 'https://lh3.googleusercontent.com/places/ANXAkqGr1G6nhZn5F7CImt5Gpcj9lAsg0TcsZt4TIz3Yf_RFpKIulFPrhTsmysG_rso6ZLLl0I7BsoBI89u0k3Omm7Hr80AiMm9IdDk=s1600-w1868', 'https://lh3.googleusercontent.com/places/ANXAkqGtnqOQKUYAEaH_apjSCYs1l9nKY33KyrmqTsl5tMQ8Tmv4Ldcob7pDxBELSysLmkHKovDi7XGJ3DBT2A5kmgWQ8BkmrgLpyVQ=s1600-w4000'];
     const [aspectRatios, setAspectRatios] = useState([]);
 
@@ -35,8 +35,8 @@ const Imagewheel = (photos) => {
     }, [photos]);
 
     return (
-        <div className="pl-16">
-            <Carousel className="w-full max-w-xs">
+        <div className="pl-16 pt-10 text-white">
+            <Carousel className="w-[220px]">
                 <CarouselContent>
                     {photos.map((photo, index) => (
                         <CarouselItem key={index}>
