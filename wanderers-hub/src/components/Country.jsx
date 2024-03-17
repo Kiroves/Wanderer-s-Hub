@@ -6,26 +6,28 @@ const Country = ({ func }) => {
     const [selected, setSelected] = useState([]);
     const [countries, setCountries] = useState([]);
 
-    const fetchData = async () => {
-        try {
-            const response = await axios.get('https://restcountries.com/v3.1/all');
-            const countriesData = response.data;
-            const countryOptions = countriesData.map(country => ({
-                value: country.name.common.toLowerCase(),
-                label: country.name.common
-            }));
-            setCountries(countryOptions);
-        } catch (error) {
-            console.error('Error fetching countries:', error);
-        }
-    };
-    fetchData();
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('https://restcountries.com/v3.1/all');
+                const countriesData = response.data;
+                const countryOptions = countriesData.map(country => ({
+                    value: country.name.common.toLowerCase(),
+                    label: country.name.common
+                }));
+                setCountries(countryOptions);
+            } catch (error) {
+                console.error('Error fetching countries:', error);
+            }
+        };
+
+        fetchData(); // Call fetchData when the component mounts
+    }, []); // Empty dependency array ensures useEffect runs only once when component mounts
 
     const handleMultiSelectChange = (selectedOptions) => {
         setSelected(selectedOptions);
         func(selectedOptions);
     };
-
 
     return (
         <div className='text-black'>
