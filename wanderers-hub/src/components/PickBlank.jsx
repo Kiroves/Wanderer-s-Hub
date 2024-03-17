@@ -91,20 +91,48 @@ const PickBlank = () => {
                                     height={35} />
                             </div>
                         </div>
-                        <div className='flex flex-row justify-between pl-36 pb-32'>
-                            <div className="w-full 6 h-96 relative bg-opacity-25  bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
-                                <div className="w-full h-20 left-[30px] top-[30px] absolute flex-col justify-start items-start inline-flex">
-                                    <div className="self-stretch text-white text-2xl font-normal font-sans">195 Countries, Which will you choose?</div>
-                                    <div className=" pt-2 self-stretch text-white text-opacity-70 text-md font-normal font-inter ">Enter a country of your choice or let us help you!</div>
+                        <div className='flex flex-row justify-between pl-36 pb-8'>
+                            <div className="w-full h-[480px] relative bg-opacity-25  bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
+                                <div className="w-full h-20 left-[30px] top-[20px] absolute flex-col justify-start items-start inline-flex">
+                                    <div className=" pl-4 self-stretch text-white text-2xl font-normal font-sans">195 Countries, Which will you choose?</div>
+                                    <div className=" pl-4 pt-2 self-stretch text-white text-opacity-70 text-md font-normal font-inter ">Enter a country of your choice or let us help you!</div>
 
-                                    <div className=" pt-2 flex flex-col w-full text-white text-opacity-50 text-sm font-normal font-inter"> Destination
+                                    <div className="  pl-4 flex flex-col w-full text-white text-opacity-50 text-sm font-normal font-inter"> Destination
                                         <div className='w-2/3 pt-2 pb-4'>
                                             <Country func={selectCountry} />
                                         </div>
-                                        <Button function={changeState} text={"GET STARTED"} />
-                                        <div className=" text-white text-lg font-normal font-sans pt-4">Can’t Decide?</div>
-                                        <div className=" text-white text-lg font-normal font-sans pb-4">Let Us Help You Choose</div>
-                                        <Button function={changeState} text={"Let Us Choose"} />
+                                        <div className="flex flex-row">
+                                            <div className="w-1/2 flex flex-col">
+                                                <div className="pl-3 pt-4">
+                                                    <Button function={changeState} text={"GET STARTED"} />
+                                                </div>
+
+                                                <div className="pl-3 text-white text-lg font-light font-sans pt-4">Can’t Decide? Let Us</div>
+                                                <div className="pl-3 text-white text-lg font-light font-sans pb-4">Help You Choose</div>
+                                                <div className="pl-3">
+                                                    <Button function={changeState} text={"Let Us Choose"} />
+                                                </div>
+                                                <div className="pt-6 flex flex-row">
+                                                    <div>
+                                                        <Image
+                                                            src="/back.png"
+                                                            alt="back"
+                                                            width={25}
+                                                            height={25} />
+                                                    </div>
+                                                    <div className="pl-3 font-inter">
+                                                        Take me back to Home Page
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="w-1/2">
+                                                <Image
+                                                    src="/camellight.png"
+                                                    alt="camel with light bulb"
+                                                    width={250}
+                                                    height={250} />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
