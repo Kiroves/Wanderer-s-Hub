@@ -9,7 +9,8 @@ import Button from './Button';
 import Exclude from './Exclude';
 import Country from './Country';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import { auth } from "@/auth/auth";
+import Loading from './Loading';
 
 const PickBlank = () => {
     const successToast = () => {
@@ -29,20 +30,18 @@ const PickBlank = () => {
     const [stage, setStage] = useState('country');
     const [cities, setCities] = useState([]);
     const [savedCities, setSavedCities] = useState('');
+    const [loading, setloading] = useState(true);
     useEffect(() => {
         sessionStorage.clear();
     }, []);
-    const handleClick = () => {
-        const auth = getAuth();
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-
-            } else {
-                router.push('/')
-            }
-        });
-
-    };
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setloading(false);
+        } else {
+            router.push('/')
+        }
+    });
     const saveCities = (val) => {
         setSavedCities(val);
     }
@@ -92,6 +91,10 @@ const PickBlank = () => {
     }
     const handleInputChange = (event) => {
         setCity(event.target.value);
+    }
+    if (loading === true) {
+        return (
+            <Loading />)
     }
 
     return (

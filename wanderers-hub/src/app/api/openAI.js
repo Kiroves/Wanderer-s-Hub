@@ -7,77 +7,79 @@ export default class countryWanderers {
     countryWanderersMembers =[
         {
             name:"Camel",
-            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries that have warmer climates. Answer as if answering this question: Where should I go for vacation? Try to generate a country randomized based on the milisecond of day. Answer with this format (COUNTRY NAME)! (reason..)",
+            settings:"Give me one country to travel to with a warm climate! only include the country name in your response and no other text. After a paragraph break give a 50 word reasoning,do not consider previous requests",
+            type:"hippie",
         },
         {
             name:"PolarBear",
-            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries that have colder climates. Answer as if answering this question: Where should I go for vacation? Try to generate a country randomized based on the milisecond of day. Answer with this format (COUNTRY NAME)! (reason..)",
+            settings:"Give me one country to travel to with a COLD climate! only include the country name in your response and no other text. After a paragraph break give a 50 word reasoning,do not consider previous requests",
             type:"a history buff",
         },
         {
             name:"Monkey",
-            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries that have a lot of events/food/entertainment. Answer as if answering this question: Where should I go for vacation? Try to generate a country randomized based on the milisecond of day. Answer with this format (COUNTRY NAME)! (reason..)",
+            settings:"Give me one country known for its food and entertainment scene! only include the country name in your response and no other text. After a paragraph break give a 50 word reasoning,do not consider previous requests",
             type:"energetic party animal",
         },
         {
             name:"Racoon",
-            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries that have lots of adreneline filled adventures. Answer as if answering this question: Where should I go for vacation? Try to generate a country randomized based on the milisecond of day. Answer with this format (COUNTRY NAME)! (reason..) DONT SAY NEW ZEALAND",
+            settings:"Give me one country known for the adventureous outdoors! only include the country name in your response and no other text. After a paragraph break give a 50 word reasoning, do not consider previous requests",
             type:"adreneline junky",
         },
     ];
     cityWanderersMembers=[
         {
             name:"Camel",
-            settings:"You're on a board, giving your opinion on what city in the country the traveller should go for their vacation. You prefer cities with lots of nature. Answer as if answering this question: Where should I go for vacation? Try to generate a city randomized based on the milisecond of day. Answer with this format (CITY NAME)! (reason..). The country is:",
+            settings:"Give me one city to travel to with lots of nature! only include the city name in your response and no other text.After a paragraph break give a 50 word reasoning, do not consider previous requests ",
+            type:"hippe",
         },
         {
             name:"PolarBear",
-            settings:"You're on a board, giving your opinion on what city in the country the traveller should go for their vacation. You prefer cities with lots of tourists attractions. Answer as if answering this question: Where should I go for vacation? Try to generate a city randomized based on the milisecond of day. Answer with this format (CITY NAME)! (reason..). The country is:",
+            settings:"Give me one city to travel to with lot of tourist attractions! only include the city name in your response and no other text.After a paragraph break give a 50 word reasoning, do not consider previous requests",
+            type:"laidback tourist"
         },
         {
             name:"Monkey",
-            settings:"You're on a board, giving your opinion on what city in the country the traveller should go for their vacation. You prefer cities that are the cultural centre of the country. Answer as if answering this question: Where should I go for vacation? Try to generate a city randomized based on the milisecond of day. Answer with this format (CITY NAME)! (reason..). The country is:",
+            settings:"Give me one city to travel to with cultural significance! only include the city name in your response and no other text.After a paragraph break give a 50 word reasoning, do not consider previous requests",
         },
         {
             name:"Racoon",
-            settings:"You're on a board, giving your opinion on what city in the country the traveller should go for their vacation. You prefer cities that known for their nightlife. Answer as if answering this question: Where should I go for vacation? Try to generate a city randomized based on the milisecond of day. Answer with this format (CITY NAME)! (reason..). The country is:",
+            settings:"Give me one city to travel to with a good nightlife! only include the city name in your response and no other text.After a paragraph break give a 50 word reasoning, do not consider previous requests",
             type:"adreneline junky",
         },
     ];
     activitiesWanderersMembers=[
         {
             name:"Camel",
-            settings:"You're on a board, giving your opinion on what acitivies a traveller should do in a given city. Give what foods the traveller should eat. Answer with this format (activity)! (reason..). The city, country is:",
+            settings:"Give me the one restaurant in the city! start your response off with only the name of the restaurant like '(NAME)!' and no text.After a paragraph break give a 50 word reasoning, do not consider previous requests",
+            type:"foodie",
         },
         {
             name:"PolarBear",
-            settings:"You're on a board, giving your opinion on what acitivies a traveller should do in a given city. Give what shows are in the area. Answer with this format (activity)! (reason..). The city, country is:",
+            settings:"Give me one stadium in the city! start your response off with only the name of the stadium like '(NAME)!' and no text.After a paragraph break give a 50 word reasoning, do not consider previous requests ",
+            type:"enthusiatic tourist",
         },
         {
             name:"Monkey",
-            settings:"You're on a board, giving your opinion on what acitivies a traveller should do in a given city. Give what tourist attractions are in the area. Answer with this format (activity)! (reason..). The city, country is:",
+            settings:"Give me one popular tourist attraction in this city! start your response off with only the tourist attraction like '(NAME)!'and no text. After a paragraph break give a 50 word reasoning, do not consider previous requests",
+            type:"history buff ",
         },
         {
             name:"Racoon",
-            settings:"You're on a board, giving your opinion on what acitivies a traveller should do in a given city. Give what clubs are in the area. Answer with this format (activity)! (reason..). The city, country is:",
-            type:"adreneline junky",
+            settings:"Give me one popular club in the city! start your response with only the name of the club like '(NAME)!' and no text. After a paragraph break give a 50 word reasoning, do not consider previous requests",
+            type:"adreneline junky ",
         },
     ];
 
-    cohere = new CohereClient({
-        token:process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
-    });
     membersJson={
         members:[],
         query:[],
     }
 
-
-
     async queryWanderers(noAllowed) {
         this.membersJson.members=this.countryWanderersMembers;
         var res='';
         var ans=[];
+        var ret=[];
         try {
             const cohere= new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
@@ -85,34 +87,7 @@ export default class countryWanderers {
             
             //const no = noAllowed.map(obj=>obj.value);
             for(let i=0;i<4;i++){
-                this.membersJson.query.push(this.membersJson.members[i].settings+"DO NOT CONSIDER THESE COUNTRIES: "+ noAllowed.toString());
-                console.log(this.membersJson.query[i]);
-                res = await cohere.generate({
-                    prompt:this.membersJson.query[i],
-                    maxTokens:150,
-                });
-                ans.push(res.generations[0].text);
-                console.log(ans);
-            }
-            
-            
-        }catch(e){
-            console.log(e);
-        }
-            console.log(this.membersJson);
-        
-        return ans;
-    };
-    async queryCity(country){
-        var res='';
-        var ans=[];
-        this.membersJson.members=this.cityWanderersMembers;
-        try{
-            const cohere= new CohereClient({
-                token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
-            });
-            for(let i=0;i<4;i++){
-                this.membersJson.query.push(this.membersJson.members[i].settings+ country);
+                this.membersJson.query.push(this.membersJson.members[i].settings+" DO NOT CONSIDER THESE COUNTRIES: "+ noAllowed.toString());
                 console.log(this.membersJson.query[i]);
                 res = await cohere.generate({
                     prompt:this.membersJson.query[i],
@@ -121,6 +96,35 @@ export default class countryWanderers {
                 ans.push(res.generations[0].text);
                 console.log(ans);
                 
+                
+            }
+            console.log(ans);
+
+        }catch(e){
+            console.log(e);
+        }
+            console.log(this.membersJson);
+        return ans;
+    };
+    async queryCity(country){
+        var res='';
+        var ans=[];
+        var ret=[];
+        this.membersJson.members=this.cityWanderersMembers;
+        try{
+            const cohere= new CohereClient({
+                token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
+            });
+            
+            for(let i=0;i<4;i++){
+                this.membersJson.query.push(this.membersJson.members[i].settings+' the country the city must be in is '+ country);
+                console.log(this.membersJson.query[i]);
+                res = await cohere.generate({
+                    prompt:this.membersJson.query[i],
+                    maxTokens:150,
+                });
+                ans.push(res.generations[0].text);
+                console.log(ans);
             }
         }catch(e){
             console.log(e);
@@ -130,25 +134,31 @@ export default class countryWanderers {
     async queryActivity(city,country){
         var res='';
         var ans=[];
+        var ret=[];
         this.membersJson.members=this.activitiesWanderersMembers;
         try{
             const cohere= new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
+            
             for(let i=0;i<4;i++){
-                this.membersJson.query.push(this.membersJson.members[i].settings+ city+country);
+                this.membersJson.query.push(this.membersJson.members[i].settings+ city+' '+country);
                 console.log(this.membersJson.query[i]);
                 res = await cohere.generate({
                     prompt:this.membersJson.query[i],
                     maxTokens:150,
                 });
                 ans.push(res.generations[0].text);
-                console.log(ans);
-                
+                console.log(ans[i]);
+                /*ret.push(await cohere.generate({
+                    prompt:'YOU ARE A '+ this.membersJson.members[i].type +'. Give me a reason to have/attend these things '+ ans[i]+ ' answer ',
+                    maxTokens:300,
+                }))
+                console.log('asdasd'+ret.generate);*/
             }
         }catch(e){
             console.log(e);
         }
-        return ans;
+        return ret;
     };
 }
