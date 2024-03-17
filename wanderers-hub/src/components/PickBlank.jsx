@@ -29,7 +29,7 @@ const PickBlank = () => {
     const [city, setCity] = useState('');
     const [stage, setStage] = useState('country');
     const [cities, setCities] = useState([]);
-    const [savedCities, setSavedCities] = useState('');
+    const [savedCities, setSavedCities] = useState([]);
     const [loading, setloading] = useState(true);
     useEffect(() => {
         sessionStorage.clear();
@@ -43,7 +43,7 @@ const PickBlank = () => {
         }
     });
     const saveCities = (val) => {
-        setSavedCities(val);
+        setSavedCities([val]);
     }
     const final = () => {
         sessionStorage.setItem('country', country);
