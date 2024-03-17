@@ -35,13 +35,13 @@ const GoogleMapsComponent = () => {
     
     await service.getDetails(request,function(results,status){
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results.photos[0].getUrl());
+        console.log(results.photos[2].getUrl());
         for(let i =0; i<5; i++){
-          references=results.photos[i].getUrl();
+          references.push(results.photos[i].getUrl());
         }
       }
     });
-    console.log();
+    return references;
   };
 
   return (

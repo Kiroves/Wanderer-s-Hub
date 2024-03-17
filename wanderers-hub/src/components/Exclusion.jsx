@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import Button from './Button'
 import Image from 'next/image';
 import Exclude from './Exclude';
-import countryWanderers from '@/app/api/openAI';
 import { useRouter } from 'next/navigation';
-
 const Exclusion = () => {
     const router = useRouter();
     const [countries, setCountries] = useState([])
@@ -14,7 +12,11 @@ const Exclusion = () => {
     const returnHome = () => {
         router.push('/');
     }
-    const handler = new countryWanderers();
+    const final = () => {
+        const labels = countries.map(country => country.label);
+        sessionStorage.setItem('no', labels);
+        router.push('/results');
+    }
     return (
         <div className="bg-[url('/blurrybg.png')] bg-cover bg-center bg-no-repeat h-screen">
             <div className="w-[480px] h-[500px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-10 rounded-2xl border border-white border-opacity-20">
@@ -30,7 +32,7 @@ const Exclusion = () => {
                         *If none apply, simply press next
                     </div>
                     {/*send countries to gabe*/}
-                    <Button function={() => handler.queryWanderers(countries)} text="Next" />
+                    <Button function={final} text="Next" />
                     <div className="pt-12 flex flex-row cursor-default hover:cursor-pointer" onClick={returnHome}>
                         <div>
                             <Image
