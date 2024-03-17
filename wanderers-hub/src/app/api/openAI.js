@@ -88,7 +88,7 @@ export default class countryWanderers {
         }catch(e){
             console.log(e);
         }
-        return res;
+        return res.generate[0].text;
     };
     async getLatLngCountry(country){
         res='';
