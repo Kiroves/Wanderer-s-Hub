@@ -6,7 +6,7 @@ const Outer = () => {
     const [open, isOpen] = useState(false);
     return (
         <div>
-            <div className="absolute top-[400px] left-[100px]">
+            <div className="absolute top-[400px] left-[120px]">
                 <HomeButton open={open} isOpen={isOpen} />
             </div>
             <Login isOpen={open} setIsOpen={isOpen} />
