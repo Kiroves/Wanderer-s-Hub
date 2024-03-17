@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Cities from './Cities';
 import Button from './Button';
 import Exclude from './Exclude';
+
 const PickBlank = () => {
     const successToast = () => {
         toast.success("Success !", {
@@ -24,6 +25,11 @@ const PickBlank = () => {
     const [city, setCity] = useState('');
     const [stage, setStage] = useState('country');
     const [cities, setCities] = useState([]);
+    const [savedCities, setSavedCities] = useState([]);
+
+    const saveCities = (val) => {
+        setSavedCities(val);
+    }
 
     const selectCountry = (val) => {
         setCountry(val);
@@ -125,8 +131,8 @@ const PickBlank = () => {
                             <div className="self-stretch text-white text-opacity-70 text-lg font-normal font-['Inter'] ">Enter a city of your choice or let us help you!</div>
 
                             <div className="flex flex-col w-2/3 text-white text-opacity-50 text-lg font-normal font-['Inter']"> Destination
-                                <Cities cities={cities} />
-                                <Button text="a" function={null} />
+                                <Cities cities={cities} func = {saveCities} />
+                                <Button text="a" function={() => console.log(savedCities)} />
                                 <button className="mt-5" onClick={changeState}>Back</button>
                                 <Button text="Let us Choose" function={() => router2.push('./picklocation/choose')} />
                             </div>

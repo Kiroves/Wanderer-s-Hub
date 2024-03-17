@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 
-const Cities = ({ cities }) => {
+const Cities = ({ cities, func }) => {
     const [selected, setSelected] = useState([]);
     const cityOptions = cities.data.map(city => ({
         value: city.toLowerCase(),
@@ -10,6 +10,7 @@ const Cities = ({ cities }) => {
     }));
     const handleMultiSelectChange = (selectedOptions) => {
         setSelected(selectedOptions);
+        func(selectedOptions);
     };
     return (
         <div className='text-black'>
