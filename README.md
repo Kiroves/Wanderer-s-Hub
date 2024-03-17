@@ -33,6 +33,7 @@ Wanderer's Hub employs a comprehensive approach, combining various AI models and
 * JavaScript
 * HTML5
 * TailwindCSS
+* Three.js
 * Firebase
 * Google Maps API
-* OpenAI
+* Cohere AI API
