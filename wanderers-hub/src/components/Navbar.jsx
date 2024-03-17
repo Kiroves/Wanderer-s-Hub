@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { MoveRight } from 'lucide-react';
 import About from './About';
-
+import Disclaimer from './Disclaimer';
 const Navbar = () => {
     return (
         <div>
@@ -22,8 +22,11 @@ const Navbar = () => {
             <div className='text-center'>
                 Meet the Animals
             </div>
-            <div className='text-center'>
-                Disclaimer
+            <div className="relative text-center">
+                <div>Disclaimer</div>
+                <div className="absolute top-0 left-0 w-full h-full">
+                    <Disclaimer/>
+                </div>
             </div>
             <div className='text-center'>
                 Contact

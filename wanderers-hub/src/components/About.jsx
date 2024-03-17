@@ -29,10 +29,13 @@ const About = () => {
            <button className="text-black px-4 py-2 rounded absolute top-0 right-0" onClick={toggleAbout}>
             <X />
           </button>
-          <div className = "absolute left-[73px] width-[50px]">
-            <Image src = "/title.png" width = {350} height = {100}/>
+          <div className  = "absolute left-[80px] top-[120px] text-white font-sans">
+            Welcome to 
+          </div>
+          <div className = "absolute left-[73px] top-[60px]">
+            <Image src = "/title.png" width = {250} height = {100}/>
            </div>
-          <div className = "absolute top-[200px] text-white left-1/2 transform -translate-x-1/2 w-[300px] text-left font-sans">
+          <div className = "absolute top-[210px] text-white left-1/2 transform -translate-x-1/2 w-[300px] text-left font-sans">
             Our travelling destination and activities website utilizes AI technology to offer personalized recommendations for your next adventure. Whether you seek cultural immersion, outdoor escapades, or urban exploration, our platform analyzes your preferences to suggest tailored destinations and activities, ensuring unforgettable travel experiences. From our website you can also conveniently book a vacation to your dream destination. 
           </div>
         </div>

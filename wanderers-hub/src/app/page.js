@@ -12,7 +12,7 @@ import HomeButton from '@/components/HomeButton.jsx';
 import Outer from '@/components/Outer.jsx';
 export default function Page() {
   return (
-    <div className="relative h-screen">
+    <div className="bg-[url('/bg.png')] bg-screen bg-cover bg-center bg-no-repeat relative h-screen">
       <Homepagebg />
       <HomepageText />
       <Outer />
