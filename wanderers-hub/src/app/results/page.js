@@ -7,11 +7,11 @@ import ResultsAnimals from '@/components/ResultsAnimals';
 
 export default function Page() {
     return (
-        <div className="relative bg-[url('/resultsbg.png')] bg-screen bg-cover bg-center bg-no-repeat h-screen">
+        <div className="relative bg-[url('/resultsbg.png')] bg-screen bg-cover bg-center bg-no-repeat h-screen overflow-hidden">
             <div className="absolute">
                 <Results />
             </div>
-             <Resultsbox />
+            <Resultsbox />
         </div>
     );
 }
