@@ -81,11 +81,11 @@ const ResultsBox = () => {
           <div className="relative left-[100px] top-[90px] w-[650px] h-[600px] bg-opacity-25 bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
             <div className="absolute w-[275px] left-[350px] top-[50px] font-sans text-[30px] text-white leading-[normal] text-left">
               {body.length > 0 && (
-                <>{body[0].trim().replace(/^\S+\s*/, '')}</>)}
+                <>{body[0].trim().split(/[\n\s\\]+/)[0]}</>)}
               <div className="pt-10">
                 <div className="text-[20px] overflow-auto max-h-[350px]"> {/* Adjust width and max height as needed */}
                   {body.length > 0 && (
-                    <div className="text-[20px] overflow-auto max-h-[350px]">{body[0].replace(/^\S+\s*/, '')}</div >)}
+                    <>{body[0].replace(/^\S+\s*/, '')}</>)}
                 </div>
               </div>
               <div className="flex flex-row pt-3">
