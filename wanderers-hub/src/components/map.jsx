@@ -127,13 +127,8 @@ const GoogleMapsComponent = () => {
       libraries={['places']}
     >
 
-      <div className="flex w-[400px] h-screen items-center justify-center">
-        <div id='map' className="absolute bg-green-500 text-white box-border h-screen w-96 p-4 border-4 rounded-md">map</div>
-      </div>
-      <div className="absolute bottom-0 left-0">
-        <button onClick={api} className="bg-green-500 text-white px-4 py-2 rounded-full">
-          Search Place
-        </button>
+      <div className="relative">
+        <div className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]"></div>
       </div>
     </LoadScript>
   );

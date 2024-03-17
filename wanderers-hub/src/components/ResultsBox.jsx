@@ -4,16 +4,27 @@ import Image from 'next/image';
 import ButtonTwo from './ButtonTwo';
 import Imagewheel from './Imagewheel';
 import Light from './Light';
+import GoogleMapsComponent from './map';
 
 const ResultsBox = () => {
   const router = useRouter();
   const [photos, setPhotos] = useState([]);
+  const [body, setBody] = useState([]);
   const [selected, setSelected] = useState(-1);
   {/*camel:0 pb:1 monkey:2 raccoon:3*/}
   const images = ['https://lh3.googleusercontent.com/places/ANXAkqGtnqOQKUYAEaH_apjSCYs1l9nKY33KyrmqTsl5tMQ8Tmv4Ldcob7pDxBELSysLmkHKovDi7XGJ3DBT2A5kmgWQ8BkmrgLpyVQ=s1600-w4000', 'https://lh3.googleusercontent.com/places/ANXAkqGr1G6nhZn5F7CImt5Gpcj9lAsg0TcsZt4TIz3Yf_RFpKIulFPrhTsmysG_rso6ZLLl0I7BsoBI89u0k3Omm7Hr80AiMm9IdDk=s1600-w1868']
 
-  const setState = (val) => {
+  const setSelectedFunc = (val) => {
     setSelected(val);
+    console.log(selected);
+  }
+
+  const setBodyFunc = (val) => {
+    setBody(val);
+  }
+
+  const setPhotosFunc = (val) => {
+    setPhotos(val);
   }
   const returnHome = () => {
     router.push('/');
@@ -22,7 +33,7 @@ const ResultsBox = () => {
   return (<div>
     
     <div className = "absolute left-[800px] top-[80px]">
-        <Light setState = {setState}/>
+        <Light setState = {setSelectedFunc}/>
       </div>
     {selected == -1 ? (
     <div>
@@ -75,7 +86,7 @@ const ResultsBox = () => {
           </div>
           <Imagewheel photos = {images}/>
           <div className="absolute top-[305px] left-[25px] w-[300px] h-[250px] bg-gray-500 rounded-[40px]">
-            {/* Content */}
+            <GoogleMapsComponent selected = {selected} setBodyArray = {setBodyFunc} selectPhotoArray = {setPhotosFunc}/>
           </div>
 
         </div>
