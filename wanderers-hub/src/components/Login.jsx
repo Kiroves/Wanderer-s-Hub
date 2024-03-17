@@ -14,6 +14,7 @@ const Login = ({ isOpen, setIsOpen }) => {
     signOut(auth) // Use the signOut method from the auth module
       .then(() => {
         setlog(false); // Update state to reflect the user being signed out
+        toggleLogin();
       })
       .catch((error) => {
         console.error('Error signing out:', error);
@@ -50,6 +51,9 @@ const Login = ({ isOpen, setIsOpen }) => {
           <div className="flex flex-col items-center absolute mt-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="text-white font-sans text-4xl mb-10">Sign in</div>
             <Auth />
+            <div className="pt-4 cursor-default hover:cursor-pointer" onClick={signout}>
+              Sign Out
+            </div>
           </div>
         </div>
       </div>

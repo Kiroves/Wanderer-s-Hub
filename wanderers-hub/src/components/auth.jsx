@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleAuthProvider, signInWithPopup, getAuth, signOut } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/auth/auth";
 import GoogleButton from 'react-google-button'
 export const validateToken = async (token) => {
@@ -18,6 +18,15 @@ export const signOutGoogle = async () => {
 };
 
 export const handleSignIn = async () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            window.location.href = "/picklocation";
+            return;
+        } else {
+
+        }
+    });
     const provider = new GoogleAuthProvider();
     try {
         const result = await signInWithPopup(auth, provider);

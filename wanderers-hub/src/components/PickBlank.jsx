@@ -8,6 +8,8 @@ import Cities from './Cities';
 import Button from './Button';
 import Exclude from './Exclude';
 import Country from './Country';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 const PickBlank = () => {
     const successToast = () => {
@@ -28,7 +30,17 @@ const PickBlank = () => {
     const [cities, setCities] = useState([]);
     const [savedCities, setSavedCities] = useState([]);
 
+    const handleClick = () => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
 
+            } else {
+                router.push('/')
+            }
+        });
+
+    };
     const saveCities = (val) => {
         setSavedCities(val);
     }
@@ -112,7 +124,7 @@ const PickBlank = () => {
                                                 <div className="pl-3">
                                                     <Button function={() => router.push('/picklocation/choose')} text={"Let Us Choose"} />
                                                 </div>
-                                                <div className="pt-8 flex flex-row">
+                                                <div className="pt-8 flex flex-row cursor-default hover:cursor-pointer" onClick={returnHome}>
                                                     <div>
                                                         <Image
                                                             src="/back.png"
@@ -120,7 +132,7 @@ const PickBlank = () => {
                                                             width={25}
                                                             height={25} />
                                                     </div>
-                                                    <div className="pl-3 font-inter">
+                                                    <div className="pl-3 font-inter cursor-default hover:cursor-pointer" onClick={returnHome}>
                                                         Take me back to Home Page
                                                     </div>
                                                 </div>
@@ -179,7 +191,7 @@ const PickBlank = () => {
                                         <div className="pl-3">
                                             <Button function={() => router2.push('./picklocation/choose')} text={"Let Us Choose"} />
                                         </div>
-                                        <div className="pt-8 flex flex-row">
+                                        <div className="pt-8 flex flex-row cursor-default hover:cursor-pointer" onClick={returnHome}>
                                             <div>
                                                 <Image
                                                     src="/back.png"
@@ -187,7 +199,7 @@ const PickBlank = () => {
                                                     width={25}
                                                     height={25} />
                                             </div>
-                                            <div className="pl-3 font-inter">
+                                            <div className="pl-3 font-inter cursor-default hover:cursor-pointer" onClick={returnHome}>
                                                 Take me back to Home Page
                                             </div>
                                         </div>
