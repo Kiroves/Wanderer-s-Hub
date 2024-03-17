@@ -16,9 +16,7 @@ export default function Page() {
             <div className="absolute left-[800px] top-[70px]">
                 <Light />
             </div>
-            <div className="absolute">
-                <Resultsbox />
-            </div>
+             <Resultsbox />
         </div>
     );
 }

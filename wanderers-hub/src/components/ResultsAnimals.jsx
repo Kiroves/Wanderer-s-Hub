@@ -78,7 +78,7 @@ const ResultsAnimals = () => {
             if (!modelLoadedPBear.current) {
               const pbear = gltf.scene;
               pbear.scale.set(35, 35, 35);
-              pbear.position.set(30, -20, -15);
+              pbear.position.set(30, -17, -15);
               pbear.rotation.y -= Math.PI/2
               pbear.rotation.x -= Math.PI/16
               scene.add(pbear);
@@ -102,7 +102,35 @@ const ResultsAnimals = () => {
           scene.background = bg;
           function animate() {
             requestAnimationFrame(animate);
-            controls.update();
+            //controls.update();
+        
+            const time = performance.now() / 1000; 
+        
+            const phaseRaccoon = 0;
+            const phaseCamel = 0.5;
+            const phaseBaboon = 0.75;
+            const phasePBear = 1;
+        
+            const bounceHeight = 0.02; 
+            const speed = 2; 
+            const raccoonY = Math.sin(time * speed + phaseRaccoon) * bounceHeight;
+            const camelY = Math.sin(time * speed + phaseCamel) * bounceHeight;
+            const baboonY = Math.sin(time * speed + phaseBaboon) * bounceHeight;
+            const pBearY = Math.sin(time * speed + phasePBear) * bounceHeight;
+        
+            if (modelRaccoon.current) {
+                modelRaccoon.current.position.y = raccoonY +modelRaccoon.current.position.y;
+            }
+            if (modelCamel.current) {
+                modelCamel.current.position.y = camelY +modelCamel.current.position.y;
+            }
+            if (modelBaboon.current) {
+                modelBaboon.current.position.y = baboonY +modelBaboon.current.position.y;
+            }
+            if (modelPBear.current) {
+                modelPBear.current.position.y = pBearY +modelPBear.current.position.y;
+            }
+        
             renderer.render(scene, camera);
         }
         
