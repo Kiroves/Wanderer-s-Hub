@@ -2,7 +2,7 @@ import React from 'react';
 import { LoadScript } from '@react-google-maps/api';
 import { int } from 'three/examples/jsm/nodes/shadernode/ShaderNode';
 import countryWanderers from '@/app/api/openAI';
-
+import { useEffect } from 'react';
 var map;
 var placeId = '';
 var references = [];
@@ -10,7 +10,9 @@ var references = [];
 
 const GoogleMapsComponent = () => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
-
+  useEffect(() => {
+    searchPlace("vancouver", 0, 0);
+  }, []);
   const handler = new countryWanderers();
   //center needs to be google.maps.LatLng(lat,lng);
   const api = async () => {
