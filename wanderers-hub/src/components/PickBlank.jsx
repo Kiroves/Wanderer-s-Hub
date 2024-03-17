@@ -91,7 +91,7 @@ const PickBlank = () => {
                                     height={35} />
                             </div>
                         </div>
-                        <div className='flex flex-row justify-between pl-36 pb-8'>
+                        <div className='flex flex-row justify-between pl-36 pb-12'>
                             <div className="w-full h-[480px] relative bg-opacity-25  bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
                                 <div className="w-full h-20 left-[30px] top-[20px] absolute flex-col justify-start items-start inline-flex">
                                     <div className=" pl-4 self-stretch text-white text-2xl font-normal font-sans">195 Countries, Which will you choose?</div>
@@ -107,12 +107,12 @@ const PickBlank = () => {
                                                     <Button function={changeState} text={"GET STARTED"} />
                                                 </div>
 
-                                                <div className="pl-3 text-white text-lg font-light font-sans pt-4">Can’t Decide? Let Us</div>
-                                                <div className="pl-3 text-white text-lg font-light font-sans pb-4">Help You Choose</div>
+                                                <div className="pl-3 text-white text-xl font-light font-sans pt-4">Can’t Decide? Let Us</div>
+                                                <div className="pl-3 text-white text-xl font-light font-sans pb-4">Help You Choose</div>
                                                 <div className="pl-3">
                                                     <Button function={() => router.push('/picklocation/choose')} text={"Let Us Choose"} />
                                                 </div>
-                                                <div className="pt-6 flex flex-row">
+                                                <div className="pt-8 flex flex-row">
                                                     <div>
                                                         <Image
                                                             src="/back.png"
@@ -125,7 +125,7 @@ const PickBlank = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="w-1/2">
+                                            <div className="w-2/3 flex flex-row justify-start">
                                                 <Image
                                                     src="/camellight.png"
                                                     alt="camel with light bulb"
@@ -159,21 +159,45 @@ const PickBlank = () => {
                                 height={35} />
                         </div>
                     </div>
-                    <div className=" z-10 mt-44 ml-36 w-[512px] h-[470px] absolute bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 bg-opacity-25 rounded-2xl border border-white border-opacity-20">
-                        <div className="w-full h-20 left-[30px] top-[30px] absolute flex-col justify-start items-start inline-flex">
-                            <div className="self-stretch text-white text-2xl font-normal font-['Sansation']">Your Travel Buddies are waiting for you!</div>
-                            <div className="self-stretch text-white text-opacity-70 text-lg font-normal font-['Inter'] ">Enter a city of your choice or let us help you!</div>
+                    <div className=" z-10 mt-44 ml-36 w-[608px] h-[480px] absolute bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 bg-opacity-25 rounded-2xl border border-white border-opacity-20">
+                        <div className="w-full h-20 left-[30px] top-[20px] absolute flex-col justify-start items-start inline-flex">
+                            <div className="pl-4 self-stretch text-white text-2xl font-normal font-sans">Your Travel Buddies are waiting for you!</div>
+                            <div className="pl-4 pt-2 self-stretch text-white text-opacity-70 text-md font-normal font-inter  ">Enter a city of your choice or let us help you!</div>
 
-                            <div className="flex flex-col w-2/3 text-white text-opacity-50 text-lg font-normal font-['Inter']"> Destination
-                                <Cities cities={cities} func={saveCities} />
-                                <Button text="a" function={() => console.log(savedCities)} />
-                                <button className="mt-5" onClick={changeState}>Back</button>
-                                <Button function={() => router2.push('./picklocation/choose')} text="Let us Choose" />
+                            <div className="pl-4 flex flex-col w-full text-white text-opacity-50 text-sm font-normal font-inter"> Destination
+                                <div className='w-2/3 pt-2 pb-4'>
+                                    <Cities cities={cities} func={saveCities} />
+                                </div>
+                                <div className="flex flex-row">
+                                    <div className="w-1/2 flex flex-col">
+                                        <div className="pl-3 pt-4">
+                                            <Button function={() => console.log(savedCities)} text={"GET STARTED"} />
+                                        </div>
+
+                                        <div className="pl-3 text-white text-xl font-light font-sans pt-4">Can’t Decide? Let Us</div>
+                                        <div className="pl-3 text-white text-xl font-light font-sans pb-4">Help You Choose</div>
+                                        <div className="pl-3">
+                                            <Button function={() => router2.push('./picklocation/choose')} text={"Let Us Choose"} />
+                                        </div>
+                                        <div className="pt-8 flex flex-row">
+                                            <div>
+                                                <Image
+                                                    src="/back.png"
+                                                    alt="back"
+                                                    width={25}
+                                                    height={25} />
+                                            </div>
+                                            <div className="pl-3 font-inter">
+                                                Take me back to Home Page
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className='absolute overflow-hidden inset-0 flex items-center justify-center'>
-                        <div className=' overflow-hidden flex flex-col justify-end pt-44 pl-96 z-2'>
+                        <div className=' overflow-hidden flex flex-col justify-end pt-44 pl-[490px] z-2'>
                             <Image
                                 src="/island.png"
                                 alt="earth"
