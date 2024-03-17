@@ -9,21 +9,18 @@ import Navbar from '@/components/navbar.jsx';
 import Homepagebg from '@/components/Homepagebg.jsx';
 import Title from '@/components/Title.jsx';
 import HomepageText from '@/components/HomepageText.jsx';
-import TestButton from '@/components/apiTestButton.jsx';
-
 export default function Page() {
   const router = new useRouter();
   return (
-      <div className="relative h-screen">
-        <Homepagebg/>
-        <TestButton/>
-        <Title/>
-        <HomepageText/>
-        <Navbar />
-        <div className = "absolute top-[450px] left-[250px]">
-          <Button text = "Get Started" function = {() => router.push('./picklocation')}/>
-        </div>
-        <Login />
+    <div className="relative h-screen">
+      <Homepagebg />
+      <Title />
+      <HomepageText />
+      <Navbar />
+      <div className="absolute top-[450px] left-[250px]">
+        <Button text="Get Started" function={() => router.push('./picklocation')} />
       </div>
+      <Login />
+    </div>
   );
 }

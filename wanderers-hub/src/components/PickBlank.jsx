@@ -102,9 +102,9 @@ const PickBlank = () => {
                                             <Country func={selectCountry} />
                                         </div>
                                         <Button function={changeState} text={"GET STARTED"} />
-                                        <div className=" text-white text-lg font-normal font-sans ">Can’t Decide?</div>
-                                        <div className=" text-white text-lg font-normal font-sans">Let Us Help You Choose</div>
-                                        <button onClick={returnHome}>Back</button>
+                                        <div className=" text-white text-lg font-normal font-sans pt-4">Can’t Decide?</div>
+                                        <div className=" text-white text-lg font-normal font-sans pb-4">Let Us Help You Choose</div>
+                                        <Button function={changeState} text={"Let Us Choose"} />
                                     </div>
                                 </div>
 
