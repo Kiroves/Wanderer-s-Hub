@@ -12,10 +12,6 @@ export default function Page() {
             <div className="absolute">
                 <Results />
             </div>
-            {/* Raccoon */}
-            <div className="absolute left-[800px] top-[70px]">
-                <Light />
-            </div>
              <Resultsbox />
         </div>
     );

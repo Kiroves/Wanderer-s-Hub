@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Light = () => {
+const Light = ({setState}) => {
     const [lit1, setLit1] = useState(false);
     const [lit2, setLit2] = useState(false);
     const [lit3, setLit3] = useState(false);
@@ -27,24 +27,28 @@ const Light = () => {
     const toggleLight1 = () => {
         setLit1(!lit1);
         {/*turn on display info for Raccoon*/}
+        setState(3);
         checkLights("lit1")
     };
 
     const toggleLight2 = () => {
         setLit2(!lit2);
         {/*turn on display info for Camel*/}
+        setState(0);
         checkLights("lit2")
     };
 
     const toggleLight3 = () => {
         setLit3(!lit3);
         {/*turn on display info for PB*/}
+        setState(1);
         checkLights("lit3")
     };
 
     const toggleLight4 = () => {
         setLit4(!lit4);
         {/*turn on display info for Monkey*/}
+        setState(2)
         checkLights("lit4")
     };
     return (
