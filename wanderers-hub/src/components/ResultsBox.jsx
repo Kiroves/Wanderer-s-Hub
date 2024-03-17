@@ -12,17 +12,16 @@ const ResultsBox = () => {
   const [photos, setPhotos] = useState([]);
   const [body, setBody] = useState([]);
   const [selected, setSelected] = useState(-1);
-  const [loading, setLoading] = useState(true);
-
-  if (loading) {
-    return (<>
-      <Loading />
-      <div className="invisible">
-        <GoogleMapsComponent selected={selected} setBodyArray={setBodyFunc} setPhotoArray={setPhotosFunc} setLoading={setLoading} />
-      </div>
-    </>)
-  }
+  //const [loading, setLoading] = useState(true);
+  //useEffect(() => {
+  //  if (body.length !== 0) {
+  //    setLoading(false);
+  //  }
+  //}, [loading]);
   {/*camel:0 pb:1 monkey:2 raccoon:3*/ }
+  const setLoading = (val) => {
+
+  }
 
   const setSelectedFunc = (val) => {
     setSelected(val);
@@ -39,10 +38,18 @@ const ResultsBox = () => {
   const returnHome = () => {
     router.push('/');
   }
-  const words = body[selected].trim().split(/[\n\s\\]+/);
-  const restOfWords = words.slice(1);
+  //if (loading) {
+  //  return (<>
+  //    <Loading />
+  //    <div className="invisible">
+  //      <GoogleMapsComponent selected={selected} setBodyArray={setBodyFunc} setPhotoArray={setPhotosFunc} setLoading={setLoading} />
+  //    </div>
+  //  </>)
+  //}
+  //const words = body[selected].trim().split(/[\n\s\\]+/);
+  //const restOfWords = words.slice(1);
 
-  const resultBody = restOfWords.join(" ")
+  //const resultBody = restOfWords.join(" ")
   return (<div>
 
     <div className="absolute left-[800px] top-[80px]">
@@ -82,10 +89,10 @@ const ResultsBox = () => {
         <div>
           <div className="relative left-[100px] top-[90px] w-[650px] h-[600px] bg-opacity-25 bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
             <div className="absolute w-[275px] left-[350px] top-[50px] font-sans text-[30px] text-white leading-[normal] text-left">
-              {words[0]}
+              lb{/*{words[0]}*/}
               <div className="pt-10">
                 <div className="text-[20px] overflow-auto max-h-[350px]"> {/* Adjust width and max height as needed */}
-                  {resultBody[selected]}
+                  {body/*{resultBody[selected]}*/}
                 </div>
               </div>
               <div className="flex flex-row pt-3">
