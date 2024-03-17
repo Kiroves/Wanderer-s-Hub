@@ -18,7 +18,10 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
   }, []);
   
   useEffect(() => {
-    api();
+    if(selected!=-1){
+      api();
+    }
+    
   }, [selected]);
   
   const handler = new countryWanderers();
@@ -47,7 +50,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         return words[0];
         
       });
-      if(select!=-1)
+      if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
           setPhotosArray(result);
@@ -71,7 +74,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         return words[0];
         
       });
-      if(select!=-1)
+      if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
           setPhotosArray(result);
@@ -93,7 +96,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         return words[0];
         
       });
-      if(select!=-1)
+      if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
           setPhotosArray(result);
@@ -163,7 +166,9 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
     >
 
       <div className="relative">
-        <div id = "map" className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]"></div>
+        <div id = 'map' className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]">
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+        </div>
       </div>
     </LoadScript>
   );
