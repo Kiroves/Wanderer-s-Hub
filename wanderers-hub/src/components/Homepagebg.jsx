@@ -33,7 +33,7 @@ const Homepagebg = () => {
           const vw = window.innerWidth * 0.01;
           const vh = window.innerHeight * 0.01;
           camera.rotation.x = -Math.PI/vw
-          camera.rotation.z = 0
+          camera.rotation.z = 
           camera.position.set(4 * vw, 4 * vh, 8 * vh); // // Adjust coefficients as needed
   
           const loader = new GLTFLoader();

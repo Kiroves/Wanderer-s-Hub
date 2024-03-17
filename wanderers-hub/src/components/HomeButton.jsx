@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRouter } from 'next/navigation';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Image from 'next/image';
 
 const HomeButton = ({ open, isOpen }) => {
     const router = new useRouter();
@@ -17,18 +18,19 @@ const HomeButton = ({ open, isOpen }) => {
     };
 
     return (
+        <div>
+        <div className = "absolute top-[-21px] left-[-29px] w-[310px]">
+            <Image src = {'/homebutton.png'} width = {600} height = {150}/>
+        </div>   
         <button
             onClick={handleClick}
-            className="w-[250px] h-[60px] px-7 py-3 bg-gradient-to-b from-orange-400 to-pink-500 rounded-xl border border-blue-400 relative overflow-hidden"
+            className="w-[250px] h-[60px] px-7 py-3 bg-transparent from-orange-400 to-pink-500 rounded-xlrelative overflow-hidden"
         >
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-400/10 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-400/10 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-l from-blue-400/10 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-transparent"></div>
-            <div className="absolute top-4 left-9 text-center text-white text-xl font-medium font-inter leading-tight">
+            <div className="absolute w-[250px] h-[60px] top-[3px] left-2 text-center text-transparent text-xl font-medium font-inter leading-tight">
                 Start My Journey
             </div>
         </button>
+        </div>
     )
 }
 

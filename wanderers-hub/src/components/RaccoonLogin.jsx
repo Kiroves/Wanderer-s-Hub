@@ -46,7 +46,7 @@ const RaccoonLogin = () => {
 
        // const axesHelper = new THREE.AxesHelper(10); // Length of each axis
         //scene.add(axesHelper);
-        const bg = new THREE.TextureLoader().load('/racbg.png');
+        const bg = new THREE.TextureLoader().load('/transparentbg.png');
         scene.background = bg;
         function animate(){
             requestAnimationFrame(animate);
