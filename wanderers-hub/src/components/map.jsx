@@ -48,7 +48,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
       if(selected!=-1)
       {
         const answer = searchPlace(firstWords[selected], 5).then(result=>{
-          setPhotosArray(result);
+          console.log('wow'+result);
         });
       }
       
@@ -71,9 +71,13 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
       });
       if(selected!=-1)
       {
-        const answer = searchPlace(firstWords[selected], 5).then(result=>{
+        try {
+          const result = await searchPlace(firstWords[selected], 5);
+          console.log('Result:', result);
           setPhotosArray(result);
-        });
+        } catch (error) {
+          console.error('Error:', error);
+        }
       }
       
     }
@@ -163,16 +167,15 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
               references.push(results.photos[i].getUrl());
             }
             console.log(references);
+            sessionStorage.setItem('photo', references);
             setLoading(false);
-            setPhotosArray(references);
             resolve(references);
+            return references;
           } else {
             reject(new Error('Places service failed'));
           }
         });
       });
-  
-      return references;
     } catch (error) {
       console.error(error);
       return error;
