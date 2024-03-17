@@ -1,13 +1,24 @@
 "use client";
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Light from '@/components/Light';
 import Results from '@/components/results';
+import Resultsbox from '@/components/ResultsBox';
+import ResultsAnimals from '@/components/ResultsAnimals';
 
 export default function Page() {
     return (
-        <Results />
-
-    )
+        <div className="relative bg-[url('/resultsbg.png')] bg-screen bg-cover bg-center bg-no-repeat h-screen">
+            <ResultsAnimals />
+            <div className="absolute">
+                <Results />
+            </div>
+            {/* Raccoon */}
+            <div className="absolute left-[800px] top-[70px]">
+                <Light />
+            </div>
+            <div className="absolute">
+                <Resultsbox />
+            </div>
+        </div>
+    );
 }
