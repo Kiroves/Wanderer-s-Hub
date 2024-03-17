@@ -21,7 +21,7 @@ export default class countryWanderers {
         },
         {
             name:"Racoon",
-            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries that have lots of adreneline filled adventures. Answer as if answering this question: Where should I go for vacation? Try to generate a country randomized based on the milisecond of day. Answer with this format (COUNTRY NAME)! (reason..)",
+            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries that have lots of adreneline filled adventures. Answer as if answering this question: Where should I go for vacation? Try to generate a country randomized based on the milisecond of day. Answer with this format (COUNTRY NAME)! (reason..) DONT SAY NEW ZEALAND",
             type:"adreneline junky",
         },
     ];
@@ -93,7 +93,6 @@ export default class countryWanderers {
                 });
                 ans.push(res.generations[0].text);
                 console.log(ans);
-                
             }
             
             
@@ -128,7 +127,7 @@ export default class countryWanderers {
         }
         return ans;
     };
-    async queryCity(city,country){
+    async queryActivity(city,country){
         var res='';
         var ans=[];
         this.membersJson.members=this.activitiesWanderersMembers;
