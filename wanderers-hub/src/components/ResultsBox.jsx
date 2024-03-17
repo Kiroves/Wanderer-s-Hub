@@ -13,6 +13,8 @@ const ResultsBox = () => {
   const [selected, setSelected] = useState(-1);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    const res = sessionStorage.getItem('photo')
+    setPhotos(res);
     if (body.length > 0) {
       const words = body[0].trim().split(/[\n\s\\]+/);
       const restOf = words.slice(1);
