@@ -8,7 +8,7 @@ const HomeButton = ({ open, isOpen }) => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                router.push('/picklocation')
+                isOpen(!open);
             } else {
                 isOpen(!open);
             }

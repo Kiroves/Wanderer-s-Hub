@@ -3,11 +3,16 @@ import Button from './Button'
 import Image from 'next/image';
 import Exclude from './Exclude';
 import countryWanderers from '@/app/api/openAI';
+import { useRouter } from 'next/navigation';
 
 const Exclusion = () => {
+    const router = useRouter();
     const [countries, setCountries] = useState([])
     const saveCountries = (val) => {
         setCountries(val);
+    }
+    const returnHome = () => {
+        router.push('/');
     }
     const handler = new countryWanderers();
     return (
@@ -26,7 +31,7 @@ const Exclusion = () => {
                     </div>
                     {/*send countries to gabe*/}
                     <Button function={() => handler.queryWanderers(countries)} text="Next" />
-                    <div className="pt-12 flex flex-row">
+                    <div className="pt-12 flex flex-row cursor-default hover:cursor-pointer" onClick={returnHome}>
                         <div>
                             <Image
                                 src="/back.png"
@@ -34,7 +39,7 @@ const Exclusion = () => {
                                 width={25}
                                 height={25} />
                         </div>
-                        <div className="pl-3 font-inter">
+                        <div className="pl-3 font-inter cursor-default hover:cursor-pointer" onClick={returnHome}>
                             Take me back to Home Page
                         </div>
                     </div>
