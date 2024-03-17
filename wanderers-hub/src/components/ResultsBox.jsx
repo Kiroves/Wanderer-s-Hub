@@ -11,7 +11,7 @@ const ResultsBox = () => {
   const [photos, setPhotos] = useState([]);
   const [body, setBody] = useState([]);
   const [selected, setSelected] = useState(-1);
-  const words = body.trim().split(/[\n\s\\]+/);
+  const words = body[selected].trim().split(/[\n\s\\]+/);
   const restOfWords = words.slice(1);
 
   const resultBody = restOfWords.join(" ")
@@ -74,7 +74,7 @@ const ResultsBox = () => {
             {words[0]}
             <div className = "pt-10">
               <div className="text-[20px] overflow-auto max-h-[350px]"> {/* Adjust width and max height as needed */}
-                {resultBody}
+                {resultBody[selected]}
               </div>
             </div>
             <div className = "flex flex-row pt-3">
