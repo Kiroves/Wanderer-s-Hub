@@ -104,7 +104,7 @@ const PickBlank = () => {
                                         <Button function={changeState} text={"GET STARTED"} />
                                         <div className=" text-white text-lg font-normal font-sans pt-4">Can’t Decide?</div>
                                         <div className=" text-white text-lg font-normal font-sans pb-4">Let Us Help You Choose</div>
-                                        <Button function={changeState} text={"Let Us Choose"} />
+                                        <Button function={() => router2.push('/picklocation/choose')} text={"Let Us Choose"} />
                                     </div>
                                 </div>
 
@@ -140,7 +140,7 @@ const PickBlank = () => {
                                 <Cities cities={cities} func={saveCities} />
                                 <Button text="a" function={() => console.log(savedCities)} />
                                 <button className="mt-5" onClick={changeState}>Back</button>
-                                <Button function={() => router2.push('./picklocation/choose')} text="Let us Choose" />
+                                <Button function={() => router2.push('/picklocation/choose')} text="Let us Choose" />
                             </div>
                         </div>
                     </div>
