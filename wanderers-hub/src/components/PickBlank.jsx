@@ -125,12 +125,7 @@ const PickBlank = () => {
                             <div className="self-stretch text-white text-opacity-70 text-lg font-normal font-['Inter'] ">Enter a city of your choice or let us help you!</div>
 
                             <div className="flex flex-col w-2/3 text-white text-opacity-50 text-lg font-normal font-['Inter']"> Destination
-                                <form className="flex flex-col mt-3" onSubmit={handleSubmit}>
-                                    <input className="border border-black mb-2"
-                                        value={city}
-                                        onChange={handleInputChange} />
-                                    <button type="submit" onClick={next}>Next</button>
-                                </form>
+                                <Cities cities={cities} />
                                 <Button text="a" function={null} />
                                 <button className="mt-5" onClick={changeState}>Back</button>
                                 <Button text="Let us Choose" function={() => router2.push('./picklocation/choose')} />
@@ -138,7 +133,7 @@ const PickBlank = () => {
                         </div>
                     </div>
                     <div className='absolute overflow-hidden inset-0 flex items-center justify-center'>
-                        <div className=' overflow-hidden flex flex-col justify-end pt-36 pl-16 z-2'>
+                        <div className=' overflow-hidden flex flex-col justify-end pt-44 pl-96 z-2'>
                             <Image
                                 src="/island.png"
                                 alt="earth"
