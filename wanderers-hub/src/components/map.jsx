@@ -8,7 +8,7 @@ var placeId = '';
 var references = [];
 
 
-const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
+const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading}) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
   const [body,setBody]=useState([]);
   useEffect(() => {
@@ -157,7 +157,9 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         }
       }
     }).then((result)=>{
+      setLoading(false);
       return references;
+      
     }).catch((e)=>{
       return e;
     });
