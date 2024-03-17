@@ -15,12 +15,27 @@ const ResultsBox = () => {
   useEffect(() => {
     const res = sessionStorage.getItem('photo')
     setPhotos(res);
+    console.log("good")
     if (body.length > 0) {
       const words = body[0].trim().split(/[\n\s\\]+/);
       const restOf = words.slice(1);
       const resultBody = restOf.join("");
     }
   }, [loading])
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === 'photo') {
+        setPhotos(event.newValue);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
   {/*camel:0 pb:1 monkey:2 raccoon:3*/ }
   const changeLoading = (val) => {
 
@@ -99,7 +114,7 @@ const ResultsBox = () => {
                 </div>
               </div>
             </div>
-            {photos.length > 0 && (
+            {loading === false && (
               <Imagewheel photos={photos} />)}
             <div className="absolute top-[305px] left-[25px] w-[300px] h-[250px] bg-gray-500 rounded-[40px]">
               <GoogleMapsComponent selected={selected} setPhotoArray={setPhotosFunc} setBodyArray={setBodyFunc} setLoading={changeLoading} />

@@ -8,17 +8,17 @@ var placeId = '';
 var references = [];
 
 
-const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
+const GoogleMapsComponent = ({ selected, setPhotosArray, setBodyArray, setLoading }) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
-  const [body,setBody]=useState([]);
-  
+  const [body, setBody] = useState([]);
+
   useEffect(() => {
-    if(selected!=-1){
+    if (selected != -1) {
       api();
     }
-    
+
   }, [selected]);
-  
+
   const handler = new countryWanderers();
   //center needs to be google.maps.LatLng(lat,lng);
   const api = async () => {
@@ -30,47 +30,45 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
       router.push('/')
     }
     if (no !== null) {
-      if(body.length==0){
-        handler.queryWanderers(no).then(result=>{
+      if (body.length == 0) {
+        handler.queryWanderers(no).then(result => {
           setBody(result);
           setBodyArray(result);
         });
       }
-      
+
 
       const firstWords = body.map(sentence => {
         // Split the sentence by whitespace
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
-        
+
       });
-      if(selected!=-1)
-      {
-        const answer = searchPlace(firstWords[selected], 5).then(result=>{
-          console.log('wow'+result);
+      if (selected != -1) {
+        const answer = searchPlace(firstWords[selected], 5).then(result => {
+          console.log('wow' + result);
         });
       }
-      
+
       //console.log(photo);
     }
     else if (storageCity !== null) {
-      if(body.length==0){
-        handler.queryActivity(storageCity, storageCountry).then(result=>{
+      if (body.length == 0) {
+        handler.queryActivity(storageCity, storageCountry).then(result => {
           setBody(result);
           setBodyArray(result);
         })
       }
-      
+
       const firstWords = body.map(sentence => {
         // Split the sentence by whitespace
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
-        
+
       });
-      if(selected!=-1)
-      {
+      if (selected != -1) {
         try {
           const result = await searchPlace(firstWords[selected], 5);
           console.log('Result:', result);
@@ -79,11 +77,11 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
           console.error('Error:', error);
         }
       }
-      
+
     }
     else if (storageCountry !== null) {
-      if(body.length==0){
-        handler.queryCity(storageCountry).then(result=>{
+      if (body.length == 0) {
+        handler.queryCity(storageCountry).then(result => {
           setBody(result);
           setBodyArray(result);
         })
@@ -93,11 +91,10 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
-        
+
       });
-      if(selected!=-1)
-      {
-        const answer = searchPlace(firstWords[selected], 5).then(result=>{
+      if (selected != -1) {
+        const answer = searchPlace(firstWords[selected], 5).then(result => {
           setPhotosArray(result);
         });
       }
@@ -110,15 +107,15 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
     try {
       var center = { lat: 0, lng: 0 };
       var map = new google.maps.Map(
-        document.getElementById('map'), { center:center, zoom: 0 }
+        document.getElementById('map'), { center: center, zoom: 0 }
       )
       var request = {
         query: q,
         fields: ['place_id'],
       };
-  
+
       var service = new google.maps.places.PlacesService(map);
-  
+
       const results = await new Promise((resolve, reject) => {
         service.findPlaceFromQuery(request, function (results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -129,23 +126,23 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
           }
         });
       });
-  
+
       console.log(results);
       const placeId = results[0].place_id;
-  
+
       console.log(placeId);
       request = {
         placeId: placeId,
         fields: ['photos']
       };
-  
+
       const geocodeResults = await new Promise((resolve, reject) => {
-        var geocoder= new google.maps.Geocoder();
-        var mapOptions={
+        var geocoder = new google.maps.Geocoder();
+        var mapOptions = {
           placeId: placeId,
         }
-        geocoder.geocode(mapOptions, function(results,status){
-          if(status === google.maps.GeocoderStatus.OK){
+        geocoder.geocode(mapOptions, function (results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
             console.log(results);
             console.log(results[0].geometry.location);
             resolve(results[0].geometry.location);
@@ -154,11 +151,11 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
           }
         });
       });
-  
+
       map = new google.maps.Map(
         document.getElementById('map'), { center: geocodeResults, zoom: zoom }
       );
-  
+
       const references = await new Promise((resolve, reject) => {
         service.getDetails(request, function (results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -181,7 +178,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
       return error;
     }
   };
-  
+
   return (
     <LoadScript
       googleMapsApiKey={googleMapsAPIkey}
@@ -189,8 +186,8 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
     >
 
       <div className="relative">
-        <div id = 'map' className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]">
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+        <div id='map' className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]">
+          <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         </div>
       </div>
     </LoadScript>
