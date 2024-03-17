@@ -1,58 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const Light = ({state, setState}) => {
+const Light = ({ state, setState }) => {
     const [lit1, setLit1] = useState(false);
     const [lit2, setLit2] = useState(false);
     const [lit3, setLit3] = useState(false);
     const [lit4, setLit4] = useState(false);
-
     const checkLights = (val) => {
-        if(lit1 && val != "lit1"){
-            {/*turn off display info for Raccoon*/}
+        if (lit1 && val != "lit1") {
+            {/*turn off display info for Raccoon*/ }
             setLit1(!lit1);
         }
-        if(lit2 && val != "lit2"){
-            {/*turn on display info for Camel*/}
+        if (lit2 && val != "lit2") {
+            {/*turn on display info for Camel*/ }
             setLit2(!lit2);
         }
-        if(lit3 && val != "lit3"){
-            {/*turn on display info for PB*/}
+        if (lit3 && val != "lit3") {
+            {/*turn on display info for PB*/ }
             setLit3(!lit3);
         }
-        if(lit4 && val != "lit4"){
-            {/*turn on display info for Monkey*/}
+        if (lit4 && val != "lit4") {
+            {/*turn on display info for Monkey*/ }
             setLit4(!lit4);
         }
     }
     const toggleLight1 = () => {
         setState(3);
         setLit1(!lit1);
-        {/*turn on display info for Raccoon*/}
-       
+        {/*turn on display info for Raccoon*/ }
+
         checkLights("lit1")
     };
 
     const toggleLight2 = () => {
         setState(0);
         setLit2(!lit2);
-        {/*turn on display info for Camel*/}
-        
+        {/*turn on display info for Camel*/ }
+
         checkLights("lit2")
     };
 
     const toggleLight3 = () => {
         setState(1);
         setLit3(!lit3);
-        {/*turn on display info for PB*/}
-        
+        {/*turn on display info for PB*/ }
+
         checkLights("lit3")
     };
 
     const toggleLight4 = () => {
         setState(2)
         setLit4(!lit4);
-        {/*turn on display info for Monkey*/}
-        
+        {/*turn on display info for Monkey*/ }
+
         checkLights("lit4")
     };
     return (
