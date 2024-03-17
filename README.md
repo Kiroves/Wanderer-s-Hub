@@ -9,11 +9,11 @@ Wanderer's Hub was conceived to revolutionize the way people discover travel des
 
 ## What it does
 
-Wanderer's Hub is a travel recommendation platform that leverages cutting-edge AI technologies to suggest personalized destinations and activities based on users' interests. By analyzing user preferences and past travel experiences, the platform employs four specialized AI models: Camel, Raccoon, Polar bear, and Baboon. Camel suggests destinations with a hot climate, Raccoon recommends party destinations, Polar bear suggests cold climate destinations, and Baboon focuses on culturally rich experiences. The backend, powered by Python Flask, integrates AI models and handles data storage using Firebase for authentication and persistence. The frontend is developed using React, JavaScript, Next.js, HTML, and CSS, offering users an intuitive interface for seamless exploration.
+Wanderer's Hub is a travel recommendation platform that leverages cutting-edge AI technologies to suggest personalized destinations and activities based on users' interests. By analyzing user preferences and past travel experiences, the platform employs four specialized AI models: Camel, Raccoon, Polar bear, and Baboon. Camel suggests destinations with a hot climate, Raccoon recommends party destinations, Polar bear suggests cold climate destinations, and Baboon focuses on culturally rich experiences. The backend, powered by Python Flask, integrates AI models and handles data storage using Firebase for authentication and persistence. The frontend is developed using React, JavaScript, Next.js, HTML, and TailindCSS, offering users an intuitive interface for seamless exploration.
 
 ## How we built it
 
-Wanderer's Hub employs a comprehensive approach, combining various AI models and technologies to deliver personalized travel recommendations. The platform utilizes user input and past travel data to train and fine-tune the AI models, ensuring accurate and relevant suggestions. Each AI model specializes in different aspects of travel preferences, analyzing factors such as climate, nightlife, cultural significance, and more. The backend, implemented in Python Flask, orchestrates the integration of AI models and manages data storage in Firebase for secure authentication and data persistence. The frontend, developed using React, JavaScript, Next.js, HTML, and CSS, provides users with an engaging and user-friendly interface for seamless exploration.
+Wanderer's Hub employs a comprehensive approach, combining various AI models and technologies to deliver personalized travel recommendations. The platform utilizes user input and past travel data to train and fine-tune the AI models, ensuring accurate and relevant suggestions. Each AI model specializes in different aspects of travel preferences, analyzing factors such as climate, nightlife, cultural significance, and more. The backend, implemented in Firebase, orchestrates the integration of AI models and manages data storage for secure authentication and data persistence. The frontend, developed using React, JavaScript, Next.js, HTML, and TailwindCSS, provides users with an engaging and user-friendly interface for seamless exploration.
 
 ## Accomplishments that we're proud of
 
@@ -28,12 +28,11 @@ Wanderer's Hub employs a comprehensive approach, combining various AI models and
 * Conducting user feedback sessions to further improve and tailor travel recommendations
 
 ## Built With
-* CSS
-* HTML5
-* JavaScript
 * React
 * Next.js
+* JavaScript
+* HTML5
+* TailwindCSS
 * Firebase
-* Tailwind
 * Google Maps API
 * OpenAI
