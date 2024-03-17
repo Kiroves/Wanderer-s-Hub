@@ -17,7 +17,26 @@ export default function Page() {
         <HomepageText/>
         <Navbar />
         <div className = "absolute top-[425px] left-[125px]">
-          <Button text = "Start My Journey" function = {() => router.push('./picklocation')}/>
+        <button
+  onClick={() => router.push('/picklocation')}
+  className="w-[250px] h-[60px] px-7 py-3 bg-gradient-to-b from-orange-400 to-pink-500 rounded-xl border border-blue-400 relative overflow-hidden"
+>
+<div className="absolute inset-0 bg-gradient-to-t from-blue-400/10 to-transparent"></div>
+  <div className="absolute inset-0 bg-gradient-to-b from-blue-400/10 to-transparent"></div>
+  <div className="absolute inset-0 bg-gradient-to-l from-blue-400/10 to-transparent"></div>
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-transparent"></div>
+  <div className="absolute top-4 left-9 text-center text-white text-xl font-medium font-inter leading-tight">
+    Start My Journey
+  </div>
+</button>
+
+
+
+
+
+
+
+
         </div>
         <Login />
         <div className = "absolute top-[-100px] left-[95px]">
