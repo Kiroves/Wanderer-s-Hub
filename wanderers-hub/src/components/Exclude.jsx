@@ -19,15 +19,13 @@ const Exclude = ({ func }) => {
             console.error('Error fetching countries:', error);
         }
     };
+    fetchData();
 
     const handleMultiSelectChange = (selectedOptions) => {
         setSelected(selectedOptions);
         func(selectedOptions);
     };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     return (
         <div className='text-black'>
