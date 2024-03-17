@@ -16,14 +16,15 @@ export default function Page() {
   return (
       <div className="relative h-screen">
         <Homepagebg/>
-        <TestButton/>
-        <Title/>
         <HomepageText/>
         <Navbar />
-        <div className = "absolute top-[450px] left-[250px]">
-          <Button text = "Get Started" function = {() => router.push('./picklocation')}/>
+        <div className = "absolute top-[425px] left-[125px]">
+          <Button text = "Start My Journey" function = {() => router.push('./picklocation')}/>
         </div>
         <Login />
+        <div className = "absolute top-[-100px] left-[95px]">
+          <Title />
+        </div>
       </div>
   );
 }

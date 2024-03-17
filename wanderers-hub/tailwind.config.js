@@ -20,7 +20,8 @@ module.exports = {
       fontFamily: {
         'Montserrat': ['Montserrat', "sans-serif"],
         'sans': ['Open+Sans'],
-        'inter': ['Inter', 'Open+Sans']
+        'inter': ['Inter', 'Open+Sans'],
+        'istokweb': ['Istok+Web']
       },
       colors: {
         border: "hsl(var(--border))",

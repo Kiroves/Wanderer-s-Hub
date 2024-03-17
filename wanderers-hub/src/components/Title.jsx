@@ -1,8 +1,9 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Title = () => {
   return (
-    <div className = "text-black text-3xl absolute top-4 left-4">Wanderer's Hub</div>
+    <Image src = "/title.png" width = {350} height = {100}/>
   )
 }
 
