@@ -8,7 +8,7 @@ var placeId = '';
 
 
 
-const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading}) => {
+const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray,setLoading}) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
   const [body,setBody]=useState([]);
   
@@ -155,31 +155,22 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
     map = new google.maps.Map(
       document.getElementById('map'), { center: geocodeResults, zoom: zoom }
     );
-
-    const references = await new Promise((resolve, reject) => {
-      service.getDetails(request, function (results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          const references = [];
-          for (let i = 0; i < 5 && i < results.photos.length; i++) {
-            references.push(results.photos[i].getUrl());
-          }
-          console.log(references);
-          setLoading(false);
-          setPhotosArray(references);
-          resolve(references);
-        } else {
-          reject(new Error('Places service failed'));
+    
+    service.getDetails(request, function (results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results.photos[1].getUrl());
+        for (let i = 0; i < 5; i++) {
+          references.push(results.photos[i].getUrl());
         }
-      });
+      }
+    }).then((result)=>{
+      return references;
+    }).catch((e)=>{
+      return e;
     });
-
-    return references;
-  } catch (error) {
-    console.error(error);
-    return error;
-  }
-};
-
+    
+    
+  };
   return (
     <LoadScript
       googleMapsApiKey={googleMapsAPIkey}
