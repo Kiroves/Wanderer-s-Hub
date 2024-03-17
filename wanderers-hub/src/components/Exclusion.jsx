@@ -1,11 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from './Button'
 import Image from 'next/image';
 import Exclude from './Exclude';
 import { useRouter } from 'next/navigation';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/auth/auth";
+import Loading from './loading';
 const Exclusion = () => {
     const router = useRouter();
     const [countries, setCountries] = useState([])
+    const [loading, setloading] = useState(true);
+
+    useEffect(() => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setloading(false);
+            } else {
+                router.push('/')
+            }
+        });
+    }, []);
+    if (loading === true) {
+        return (
+            <Loading />)
+    }
     const saveCountries = (val) => {
         setCountries(val);
     }

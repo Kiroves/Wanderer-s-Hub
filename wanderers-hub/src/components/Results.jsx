@@ -1,14 +1,36 @@
-"use client"
 import React from 'react'
 import countryWanderers from '@/app/api/openAI';
 import Button from './Button';
-const Results = async () => {
+import { useState, useEffect } from 'react'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useRouter } from 'next/navigation';
+import { auth } from "@/auth/auth";
+import Loading from './loading';
+
+const Results = () => {
+    const router = useRouter();
+    const [state, changeState] = useState('');
+    const [loading, setloading] = useState(true);
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setloading(false);
+        } else {
+            router.push('/')
+        }
+    });
+    //if (loading === true) {
+    //    return (
+    //        <Loading />)
+    //}
     const handler = new countryWanderers();
     const api = async () => {
         const no = sessionStorage.getItem('no');
         const storageCity = sessionStorage.getItem('city');
         const storageCountry = sessionStorage.getItem('country');
-
+        if (no === null && storageCity === null && storageCountry === null) {
+            router.push('/')
+        }
         if (no !== null) {
             const noResult = await handler.queryWanderers(no);
             console.log(no);
@@ -25,7 +47,6 @@ const Results = async () => {
             console.log(storageCountry);
             console.log(countryResult);
         }
-        console.log("oops")
     }
     return (
         <Button function={api} text={"gabeforreal"} />
