@@ -5,17 +5,12 @@ import countryWanderers from '@/app/api/openAI';
 import { useEffect } from 'react';
 var map;
 var placeId = '';
-var references = [];
+
 
 
 const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading}) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
   const [body,setBody]=useState([]);
-  useEffect(() => {
-    searchPlace("vancouver", 0);
-    searchPlace("vancouver", 0);
-    api();
-  }, []);
   
   useEffect(() => {
     if(selected!=-1){
@@ -27,7 +22,6 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
   const handler = new countryWanderers();
   //center needs to be google.maps.LatLng(lat,lng);
   const api = async () => {
-    console.log("ao;iwjdaoi;jdoa j");
     const no = sessionStorage.getItem('no');
     const storageCity = sessionStorage.getItem('city');
     const storageCountry = sessionStorage.getItem('country');
@@ -58,8 +52,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
       }
       
       //console.log(photo);
-    }
-    else if (storageCity !== null) {
+    }else if (storageCity !== null) {
       if(body.length==0){
         handler.queryActivity(storageCity, storageCountry).then(result=>{
           setBody(result);
@@ -81,8 +74,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
         });
       }
       
-    }
-    else if (storageCountry !== null) {
+    }else if (storageCountry !== null) {
       if(body.length==0){
         handler.queryCity(storageCountry).then(result=>{
           setBody(result);
@@ -148,30 +140,22 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
     map = new google.maps.Map(
       document.getElementById('map'), { center:latlonMap, zoom: zoom }
     );
-    
-    function getPlaceDetails(request, callback) {
-      service.getDetails(request, function (results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          const references = [];
-          for (let i = 0; i < 5; i++) {
-            references.push(results.photos[i].getUrl());
-          }
-          callback(references);
-        } else {
-          console.error('Error fetching place details');
-          // Handle error state if needed
+    var references = [];
+    service.getDetails(request, function (results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        //console.log(results.photos[1].getUrl());
+        for (let i = 0; i < 5; i++) {
+          references.push(results.photos[i].getUrl());
         }
-      });
-    }
-    
-    function fetchPlaceDetails(request) {
-      return new Promise((resolve, reject) => {
-        getPlaceDetails(request, function(references) {
-          setLoading(false);
-          resolve(references);
-        });
-      });
-    }
+        console.log(references);
+        setPhotosArray(references);
+      }
+    }).then((result)=>{
+      
+      return references;
+    }).catch((e)=>{
+      return e;
+    });
     
     
   };
