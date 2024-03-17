@@ -20,7 +20,7 @@ export default function Page() {
         <Title/>
         <HomepageText/>
         <Navbar />
-        <div className = "absolute top-96 left-48">
+        <div className = "absolute top-[450px] left-[250px]">
           <Button text = "Get Started" function = {() => router.push('./picklocation')}/>
         </div>
         <Login />
