@@ -9,8 +9,6 @@ import Navbar from '@/components/navbar.jsx';
 import Homepagebg from '@/components/Homepagebg.jsx';
 import Title from '@/components/Title.jsx';
 import HomepageText from '@/components/HomepageText.jsx';
-import TestButton from '@/components/apiTestButton.jsx';
-
 export default function Page() {
   const router = new useRouter();
   return (

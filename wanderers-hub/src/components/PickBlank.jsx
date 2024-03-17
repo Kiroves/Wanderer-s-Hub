@@ -28,6 +28,7 @@ const PickBlank = () => {
     const [cities, setCities] = useState([]);
     const [savedCities, setSavedCities] = useState([]);
 
+
     const saveCities = (val) => {
         setSavedCities(val);
     }
@@ -93,17 +94,17 @@ const PickBlank = () => {
                         <div className='flex flex-row justify-between pl-36 pb-32'>
                             <div className="w-full 6 h-96 relative bg-opacity-25  bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
                                 <div className="w-full h-20 left-[30px] top-[30px] absolute flex-col justify-start items-start inline-flex">
-                                    <div className="self-stretch text-white text-3xl font-normal font-sans">195 Countries, Which will you choose?</div>
-                                    <div className=" pt-2 self-stretch text-white text-opacity-70 text-lg font-normal font-inter ">Enter a country of your choice or let us help you!</div>
+                                    <div className="self-stretch text-white text-2xl font-normal font-sans">195 Countries, Which will you choose?</div>
+                                    <div className=" pt-2 self-stretch text-white text-opacity-70 text-md font-normal font-inter ">Enter a country of your choice or let us help you!</div>
 
-                                    <div className=" pt-2 flex flex-col w-full text-white text-opacity-50 text-lg font-normal font-inter"> Destination
-                                        <div className='w-2/3 pt-2'>
+                                    <div className=" pt-2 flex flex-col w-full text-white text-opacity-50 text-sm font-normal font-inter"> Destination
+                                        <div className='w-2/3 pt-2 pb-4'>
                                             <Country func={selectCountry} />
                                         </div>
                                         <Button function={changeState} text={"GET STARTED"} />
-                                        <button onClick={changeState}>Next</button>
-                                        <div className=" h-20 text-white text-2xl font-normal font-['Sansation'] leading-loose">Can’t Decide? Let Us Help You Choose</div>
-                                        <button onClick={returnHome}>Back</button>
+                                        <div className=" text-white text-lg font-normal font-sans pt-4">Can’t Decide?</div>
+                                        <div className=" text-white text-lg font-normal font-sans pb-4">Let Us Help You Choose</div>
+                                        <Button function={changeState} text={"Let Us Choose"} />
                                     </div>
                                 </div>
 
@@ -139,7 +140,7 @@ const PickBlank = () => {
                                 <Cities cities={cities} func={saveCities} />
                                 <Button text="a" function={() => console.log(savedCities)} />
                                 <button className="mt-5" onClick={changeState}>Back</button>
-                                <Button text="Let us Choose" function={() => router2.push('./picklocation/choose')} />
+                                <Button function={() => router2.push('./picklocation/choose')} text="Let us Choose" />
                             </div>
                         </div>
                     </div>
