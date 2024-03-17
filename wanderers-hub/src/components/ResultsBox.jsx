@@ -16,6 +16,7 @@ const ResultsBox = () => {
  
   const setSelectedFunc = (val) => {
     setSelected(val);
+    console.log(selected);
   }
 
   const setBodyFunc = (val) => {
@@ -88,7 +89,7 @@ const ResultsBox = () => {
           </div>
           <Imagewheel photos = {photos}/>
           <div className="absolute top-[305px] left-[25px] w-[300px] h-[250px] bg-gray-500 rounded-[40px]">
-            <GoogleMapsComponent selected = {selected} setBodyArray = {setBodyFunc} setPhotoArray = {setPhotosFunc}/>
+            {/* <GoogleMapsComponent selected = {selected} setBodyArray = {setBodyFunc} setPhotoArray = {setPhotosFunc}/> */}
           </div>
 
         </div>

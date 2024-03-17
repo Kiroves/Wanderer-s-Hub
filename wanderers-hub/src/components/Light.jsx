@@ -25,30 +25,34 @@ const Light = ({state, setState}) => {
         }
     }
     const toggleLight1 = () => {
+        setState(3);
         setLit1(!lit1);
         {/*turn on display info for Raccoon*/}
-        setState(3);
+       
         checkLights("lit1")
     };
 
     const toggleLight2 = () => {
+        setState(0);
         setLit2(!lit2);
         {/*turn on display info for Camel*/}
-        setState(0);
+        
         checkLights("lit2")
     };
 
     const toggleLight3 = () => {
+        setState(1);
         setLit3(!lit3);
         {/*turn on display info for PB*/}
-        setState(1);
+        
         checkLights("lit3")
     };
 
     const toggleLight4 = () => {
+        setState(2)
         setLit4(!lit4);
         {/*turn on display info for Monkey*/}
-        setState(2)
+        
         checkLights("lit4")
     };
     return (
