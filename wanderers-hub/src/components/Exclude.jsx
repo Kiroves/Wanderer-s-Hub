@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 
-const Exclude = () => {
+const Exclude = ({ func }) => {
     const [selected, setSelected] = useState([]);
     const [countries, setCountries] = useState([]);
 
@@ -19,14 +19,13 @@ const Exclude = () => {
             console.error('Error fetching countries:', error);
         }
     };
+    fetchData();
 
     const handleMultiSelectChange = (selectedOptions) => {
         setSelected(selectedOptions);
+        func(selectedOptions);
     };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     return (
         <div className='text-black'>
