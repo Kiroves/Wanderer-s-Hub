@@ -1,96 +1,77 @@
-import OpenAI from 'openai';
+import { CohereClient } from "cohere-ai";
 
-const model = "gpt-3.5-turbo";
 
-const countryWanderersMembers =[
-    {
-        name:"Camel",
-        settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
-        no:"Do not include these countries",
-        type:"laidback and hippie like",
-        conversation:[],
-    },/*
-    {
-        name:"PolarBear",
-        settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
-        no:"Do not include these countries",
-        type:"a history buff",
-        conversation:[],
-    },
-    {
-        name:"Monkey",
-        settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
-        no:"Do not include these countries",
-        type:"energetic party animal",
-        conversation:[],
-    },
-    {
-        name:"Racoon",
-        settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
-        no:"Do not include these countries",
-        type:"adreneline junky",
-        conversation:[],
-    },*/
-];
 
-export default class countryWanderers{
-    
-    membersJson = {
-		members: [],
-		querry: [],
-	};
-    constructor(members){
-        if(members ==null||members.length===0){
-            this.membersJson.members=countryWanderersMembers;
-        }else{
-            this.membersJson.members=members;
-        }
+
+export default class countryWanderers {
+    countryWanderersMembers =[
+        {
+            name:"Camel",
+            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words.",
+            no:"Do not include these countries.",
+            type:"laidback and hippie like",
+            conversation:[],
+        },/*
+        {
+            name:"PolarBear",
+            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
+            no:"Do not include these countries",
+            type:"a history buff",
+            conversation:[],
+        },
+        {
+            name:"Monkey",
+            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
+            no:"Do not include these countries",
+            type:"energetic party animal",
+            conversation:[],
+        },
+        {
+            name:"Racoon",
+            settings:"You're on a board, giving your opinion on what country the traveller should go for their vacation. You prefer countries where there's a lot of unique cultures, and your response should be no more than 50 words",
+            no:"Do not include these countries",
+            type:"adreneline junky",
+            conversation:[],
+        },*/
+    ];
+
+    cohere = new CohereClient({
+        token:process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
+    });
+    membersJson={
+        members:[],
+        query:[],
     }
 
-    setMembers(indices){
-        this.memebersJson.members=indices.map((index)=>countryWanderersMembers[index]);
-        console.log(this.membersJson.members);
+    constructor(members) {
+        this.membersJson.members=this.countryWanderersMembers;
     }
 
-    async queryWanderers(msg){
-        try{
-            this.membersJson.querry.push(msg);
+
+    async queryWanderers(noAllowed) {
+        try {
+            this.membersJson.query.push(this.membersJson.members[0].settings+"Do not include these countries: "+noAllowed+". State the country name as your first word");
+
+            const cohere= new CohereClient({
+                token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
+            });
+
             
-
-            const openai =new OpenAI({
-                apiKey: process.env.NEXT_PUBLIC_REACT_APP_OPENAI_API_KEY,
-                dangerouslyAllowBrowser: true,
-            });
-
-            const obj = this.membersJson.members.map(async(member)=>{
-                member.conversation.push({role:"user", content: msg});
-                
-                const res =await openai.chat.completions.create({
-                    messages:[
-                        {
-                            role:"system", content:"hi",
-                        },
-                        //...member.conversation,
-                    ],
-                    model:model,
+                const res = await cohere.generate({
+                    prompt:this.membersJson.query[0],
+                    maxTokens:150,
                 });
-                console.log(
-                    member.name +": "+res.choices[0].message.content
-                );
-                member.conversation.push({
-                    role: "assistant",
-                    content:res.choices[0].message.content,
-                });
-            });
-            //await Promise.all(obj=> setTimeout(obj,50000));
+
+                console.log(res);
+            }catch(e){
+                console.log(e);
+            }
+            
             console.log(this.membersJson);
             console.log("thumb");
             return "thumb";
-        } catch(e){
-
+        } catch (e) {
             console.log(e);
+            return "Error";
         }
-        return "Error";
-    }
 }
-//createChatBots();
