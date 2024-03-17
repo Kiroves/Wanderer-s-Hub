@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LoadScript } from '@react-google-maps/api';
 import { int } from 'three/examples/jsm/nodes/shadernode/ShaderNode';
 import countryWanderers from '@/app/api/openAI';
@@ -8,11 +8,19 @@ var placeId = '';
 var references = [];
 
 
-const GoogleMapsComponent = () => {
+const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
+  const [body,setBody]=useState([]);
   useEffect(() => {
-    searchPlace("vancouver", 0, 0);
+    searchPlace("vancouver", 0);
+    searchPlace("vancouver", 0);
+    api();
   }, []);
+  
+  useEffect(() => {
+    api();
+  }, [selected]);
+  
   const handler = new countryWanderers();
   //center needs to be google.maps.LatLng(lat,lng);
   const api = async () => {
@@ -24,46 +32,73 @@ const GoogleMapsComponent = () => {
       router.push('/')
     }
     if (no !== null) {
-      const noResult = await handler.queryWanderers(no);
+      if(body.length==0){
+        handler.queryWanderers(no).then(result=>{
+          setBody(result);
+          setBodyArray(result);
+        });
+      }
+      
 
-      const firstWords = noResult.map(sentence => {
+      const firstWords = body.map(sentence => {
         // Split the sentence by whitespace
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
         
       });
-      const answer = searchPlace(firstWords[0], 5).then(result=>{
-        console.log(result);
-      });
+      if(select!=-1)
+      {
+        const answer = searchPlace(firstWords[selected], 5).then(result=>{
+          setPhotosArray(result);
+        });
+      }
+      
       //console.log(photo);
     }
     else if (storageCity !== null) {
-      const cityResult = await handler.queryActivity(storageCity, storageCountry);
-      const firstWords = cityResult.map(sentence => {
+      if(body.length==0){
+        handler.queryActivity(storageCity, storageCountry).then(result=>{
+          setBody(result);
+          setBodyArray(result);
+        })
+      }
+      
+      const firstWords = body.map(sentence => {
         // Split the sentence by whitespace
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
         
       });
-      const answer = searchPlace(firstWords[0]+storageCity+storageCountry, 12).then(result=>{
-        console.log(result);
-      });
+      if(select!=-1)
+      {
+        const answer = searchPlace(firstWords[selected], 5).then(result=>{
+          setPhotosArray(result);
+        });
+      }
       
     }
     else if (storageCountry !== null) {
-      const countryResult = await handler.queryCity(storageCountry);
-      const firstWords = countryResult.map(sentence => {
+      if(body.length==0){
+        handler.queryCity(storageCountry).then(result=>{
+          setBody(result);
+          setBodyArray(result);
+        })
+      }
+      const firstWords = body.map(sentence => {
         // Split the sentence by whitespace
         const words = sentence.trim().split(/[\n\s\\]+/);
         // Return the first word after trimming any leading/trailing whitespace
         return words[0];
         
       });
-      const answer = searchPlace(firstWords[0]+storageCountry, 7).then(result=>{
-        console.log(result);
-      });
+      if(select!=-1)
+      {
+        const answer = searchPlace(firstWords[selected], 5).then(result=>{
+          setPhotosArray(result);
+        });
+      }
     }
     else {
       console.log("oops")
@@ -72,7 +107,7 @@ const GoogleMapsComponent = () => {
   const searchPlace = async (q, zoom) => {
 
     var center = { lat: 0, lng: 0 };
-    map = new google.maps.Map(
+    var map = new google.maps.Map(
       document.getElementById('map'), { center:center, zoom: 0 }
     )
     var request = {
