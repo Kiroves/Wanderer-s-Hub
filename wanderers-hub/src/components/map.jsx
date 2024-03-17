@@ -163,7 +163,7 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
     >
 
       <div className="relative">
-        <div className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]"></div>
+        <div id = "map" className="absolute bg-green-500 text-white box-border h-[250px] w-[300px] p-4 border-4 rounded-[40px]"></div>
       </div>
     </LoadScript>
   );
