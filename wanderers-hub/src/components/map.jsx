@@ -48,15 +48,15 @@ const GoogleMapsComponent = () => {
         .then((latLons) => {
           const lats = [];
           const lons = [];
-
+          console.log(latLons);
           latLons.forEach(latlon => {
             if (latlon) {
-              const [lat, lon] = latlon.split(' ');
+              const [lat, lon] = latlon.trim().split(' ');
               lats.push(parseFloat(lat));
               lons.push(parseFloat(lon));
             }
           });
-
+          console.log(lats);
           // Now you can use lats and lons here
           console.log(lats[0]);
           console.log(searchPlace(firstWords[0], lats[0], lons[0]));
