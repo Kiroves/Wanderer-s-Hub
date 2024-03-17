@@ -11,7 +11,8 @@ var references = [];
 const GoogleMapsComponent = () => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
   useEffect(() => {
-    searchPlace("vancouver", 0, 0);
+    searchPlace("vancouver", 0);
+    searchPlace("vancouver", 0);
   }, []);
   const handler = new countryWanderers();
   //center needs to be google.maps.LatLng(lat,lng);
@@ -72,7 +73,7 @@ const GoogleMapsComponent = () => {
   const searchPlace = async (q, zoom) => {
 
     var center = { lat: 0, lng: 0 };
-    map = new google.maps.Map(
+    var map = new google.maps.Map(
       document.getElementById('map'), { center:center, zoom: 0 }
     )
     var request = {
