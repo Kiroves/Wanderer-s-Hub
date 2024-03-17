@@ -77,7 +77,7 @@ export default class countryWanderers {
     async getLatLngCity(city, country) {
         var res = '';
         try {
-            cohere = new CohereClient({
+            const cohere = new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
             res = await cohere.generate({
@@ -93,7 +93,7 @@ export default class countryWanderers {
     async getLatLngCountry(country) {
         var res = '';
         try {
-            cohere = new CohereClient({
+            const cohere = new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
             res = await cohere.generate({
