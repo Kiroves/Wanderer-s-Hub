@@ -8,7 +8,7 @@ var placeId = '';
 var references = [];
 
 
-const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
+const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray,setLoading}) => {
   const googleMapsAPIkey = process.env.NEXT_PUBLIC_REACT_APP_MAPS_API_KEY;
   const [body,setBody]=useState([]);
   useEffect(() => {
@@ -148,16 +148,28 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray}) => {
     map = new google.maps.Map(
       document.getElementById('map'), { center:latlonMap, zoom: zoom }
     );
-    
-    await service.getDetails(request, function (results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results.photos[1].getUrl());
-        for (let i = 0; i < 5; i++) {
-          references.push(results.photos[i].getUrl());
+    const getDetailsPromise = new Promise((resolve, reject) => {
+      service.getDetails(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          const references = [];
+          for (let i = 0; i < 5; i++) {
+            references.push(results.photos[i].getUrl());
+          }
+          resolve(references);
+        } else {
+          reject(new Error('Error retrieving details'));
         }
-      }
+      });
     });
-    return references;
+    
+    getDetailsPromise.then(references => {
+      console.log(references);
+      setLoading(false);
+      return references;
+    }).catch(error => {
+      console.error(error);
+      return error;
+    });
   };
   return (
     <LoadScript
