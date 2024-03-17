@@ -149,20 +149,29 @@ const GoogleMapsComponent = ({selected, setPhotosArray, setBodyArray, setLoading
       document.getElementById('map'), { center:latlonMap, zoom: zoom }
     );
     
-    service.getDetails(request, function (results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results.photos[1].getUrl());
-        for (let i = 0; i < 5; i++) {
-          references.push(results.photos[i].getUrl());
+    function getPlaceDetails(request, callback) {
+      service.getDetails(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          const references = [];
+          for (let i = 0; i < 5; i++) {
+            references.push(results.photos[i].getUrl());
+          }
+          callback(references);
+        } else {
+          console.error('Error fetching place details');
+          // Handle error state if needed
         }
-      }
-    }).then((result)=>{
-      setLoading(false);
-      return references;
-      
-    }).catch((e)=>{
-      return e;
-    });
+      });
+    }
+    
+    function fetchPlaceDetails(request) {
+      return new Promise((resolve, reject) => {
+        getPlaceDetails(request, function(references) {
+          setLoading(false);
+          resolve(references);
+        });
+      });
+    }
     
     
   };
