@@ -88,7 +88,7 @@ export default class countryWanderers {
         } catch (e) {
             console.log(e);
         }
-        return res.generate[0].text;
+        return res.generations[0].text;
     };
     async getLatLngCountry(country) {
         var res = '';
@@ -104,7 +104,7 @@ export default class countryWanderers {
         } catch (e) {
             console.log(e);
         }
-        return res.generate[0].text;
+        return res.generations[0].text;
     };
     async queryWanderers(noAllowed) {
         this.membersJson.members = this.countryWanderersMembers;
