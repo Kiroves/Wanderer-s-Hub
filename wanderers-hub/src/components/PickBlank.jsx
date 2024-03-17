@@ -51,14 +51,12 @@ const PickBlank = () => {
     const finalCity = () => {
         sessionStorage.setItem('country', country);
         const cityfinal = savedCities.map(city => city.label);
-        console.log(cityfinal)
         sessionStorage.setItem('city', cityfinal);
         router.push('/results');
     }
 
     const selectCountry = (val) => {
         setCountry(val.label);
-        console.log(val.label);
     }
     const getCities = async () => {
         try {
@@ -68,7 +66,6 @@ const PickBlank = () => {
             successToast();
             // Update the cities state with the response data
             setCities(response.data);
-            console.log(response.data); // Make sure data is received correctly
         } catch (error) {
             failToast();
             console.error("Error fetching cities:", error);
@@ -91,17 +88,8 @@ const PickBlank = () => {
     const returnHome = () => {
         router.push('/');
     }
-    const next = () => {
-        console.log(city);
-        console.log(country);
-    }
     const handleInputChange = (event) => {
         setCity(event.target.value);
-    }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(city);
-        console.log(country);
     }
 
     return (

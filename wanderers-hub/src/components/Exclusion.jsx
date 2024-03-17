@@ -15,7 +15,6 @@ const Exclusion = () => {
     const final = () => {
         const labels = countries.map(country => country.label);
         sessionStorage.setItem('no', labels);
-        console.log(labels);
         router.push('/results');
     }
     return (

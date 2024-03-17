@@ -34,7 +34,6 @@ export const handleSignIn = async () => {
         const token = credential.accessToken;
         window.localStorage.setItem("token", token);
         window.localStorage.setItem("email", result.user.email);
-        console.log("sign in ");
         window.location.href = "/picklocation";
     } catch (error) {
         console.log("error", error);
