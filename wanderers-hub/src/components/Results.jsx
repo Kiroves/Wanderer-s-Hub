@@ -1,5 +1,4 @@
 import React from 'react'
-import countryWanderers from '@/app/api/openAI';
 import Button from './Button';
 import { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -25,11 +24,9 @@ const Results = () => {
         return (
             <Loading />)
     }
-    const handler = new countryWanderers();
-    
     return (
         <>
-            <Button function={api} text={"gabeforreal"} />
+            <Button function={() => { }} text={"gabeforreal"} />
         </>
     )
 }
