@@ -13,19 +13,15 @@ const ResultsBox = () => {
   const [body, setBody] = useState([]);
   const [selected, setSelected] = useState(-1);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    if (body.length !== 0) {
-      setLoading(false);
-    }
-  }, [body]);
+
   if (loading) {
-    return (<Loading />)
+    return (<>
+      <Loading />
+      <div className="invisible">
+        <GoogleMapsComponent selected={selected} setBodyArray={setBodyFunc} setPhotoArray={setPhotosFunc} setLoading={setLoading} />
+      </div>
+    </>)
   }
-
-  const words = body[selected].trim().split(/[\n\s\\]+/);
-  const restOfWords = words.slice(1);
-
-  const resultBody = restOfWords.join(" ")
   {/*camel:0 pb:1 monkey:2 raccoon:3*/ }
 
   const setSelectedFunc = (val) => {
@@ -43,6 +39,10 @@ const ResultsBox = () => {
   const returnHome = () => {
     router.push('/');
   }
+  const words = body[selected].trim().split(/[\n\s\\]+/);
+  const restOfWords = words.slice(1);
+
+  const resultBody = restOfWords.join(" ")
   return (<div>
 
     <div className="absolute left-[800px] top-[80px]">
@@ -99,7 +99,7 @@ const ResultsBox = () => {
             </div>
             <Imagewheel photos={photos} />
             <div className="absolute top-[305px] left-[25px] w-[300px] h-[250px] bg-gray-500 rounded-[40px]">
-              <GoogleMapsComponent selected={selected} setBodyArray={setBodyFunc} setPhotoArray={setPhotosFunc} />
+              <GoogleMapsComponent selected={selected} setBodyArray={setBodyFunc} setPhotoArray={setPhotosFunc} setLoading={setLoading} />
             </div>
 
           </div>
