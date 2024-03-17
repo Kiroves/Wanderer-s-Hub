@@ -8,35 +8,43 @@ const Light = () => {
 
     const checkLights = (val) => {
         if(lit1 && val != "lit1"){
+            {/*turn off display info for Raccoon*/}
             setLit1(!lit1);
         }
         if(lit2 && val != "lit2"){
+            {/*turn on display info for Camel*/}
             setLit2(!lit2);
         }
         if(lit3 && val != "lit3"){
+            {/*turn on display info for PB*/}
             setLit3(!lit3);
         }
         if(lit4 && val != "lit4"){
+            {/*turn on display info for Monkey*/}
             setLit4(!lit4);
         }
     }
     const toggleLight1 = () => {
         setLit1(!lit1);
+        {/*turn on display info for Raccoon*/}
         checkLights("lit1")
     };
 
     const toggleLight2 = () => {
         setLit2(!lit2);
+        {/*turn on display info for Camel*/}
         checkLights("lit2")
     };
 
     const toggleLight3 = () => {
         setLit3(!lit3);
+        {/*turn on display info for PB*/}
         checkLights("lit3")
     };
 
     const toggleLight4 = () => {
         setLit4(!lit4);
+        {/*turn on display info for Monkey*/}
         checkLights("lit4")
     };
     return (

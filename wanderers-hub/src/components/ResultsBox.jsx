@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import ButtonTwo from './ButtonTwo';
+import Imagewheel from './Imagewheel';
 
 const ResultsBox = () => {
   const router = useRouter();
+  const [photos, setPhotos] = useState([]);
+  const [selected, changeSelected] = useState(-1);
+  {/*camel:0 pb:1 monkey:2 raccoon:3*/}
+  const images = ['https://lh3.googleusercontent.com/places/ANXAkqGtnqOQKUYAEaH_apjSCYs1l9nKY33KyrmqTsl5tMQ8Tmv4Ldcob7pDxBELSysLmkHKovDi7XGJ3DBT2A5kmgWQ8BkmrgLpyVQ=s1600-w4000', 'https://lh3.googleusercontent.com/places/ANXAkqGr1G6nhZn5F7CImt5Gpcj9lAsg0TcsZt4TIz3Yf_RFpKIulFPrhTsmysG_rso6ZLLl0I7BsoBI89u0k3Omm7Hr80AiMm9IdDk=s1600-w1868']
   const returnHome = () => {
     router.push('/');
 }
 
-  return (
+  return (<div>{selected == -1 ? (
+    <div></div>
+  )
+
+  : (
     <div >
          <div className="relative left-[100px] top-[90px] w-[650px] h-[600px] bg-opacity-25 bg-gradient-to-b from-white/20 via-blue-300/20 to-yellow-200/20 rounded-2xl border border-white border-opacity-20">
           <div className="absolute w-[275px] left-[350px] top-[50px] font-sans text-[30px] text-white leading-[normal] text-left">
@@ -28,7 +37,7 @@ const ResultsBox = () => {
               </div>
             </div>
           </div>
-
+          <Imagewheel photos = {images}/>
           <div className="absolute top-[305px] left-[25px] w-[300px] h-[250px] bg-gray-500 rounded-[40px]">
             {/* Content */}
           </div>
@@ -50,6 +59,9 @@ const ResultsBox = () => {
                 </button>
             </div>
     </div>
+  )
+  }
+  </div>
   )
 }
 
