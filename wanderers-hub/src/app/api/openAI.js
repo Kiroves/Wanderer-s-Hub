@@ -74,7 +74,38 @@ export default class countryWanderers {
         members:[],
         query:[],
     }
-
+    async getLatLngCity(city, country){
+        res='';
+        try{
+            cohere=new CohereClient({
+                token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
+            });
+            res= await cohere.generate({
+                prompt:'Only give the latitude longitude of '+city+', '+ country+' AND NO OTHER TEXT ONLY NUMBERS',
+                maxTokens:150,
+            })
+            
+        }catch(e){
+            console.log(e);
+        }
+        return res;
+    };
+    async getLatLngCountry(country){
+        res='';
+        try{
+            cohere=new CohereClient({
+                token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
+            });
+            res= await cohere.generate({
+                prompt:'Only give the latitude longitude of '+country+' AND NO OTHER TEXT ONLY NUMBERS',
+                maxTokens:150,
+            })
+            
+        }catch(e){
+            console.log(e);
+        }
+        return res;
+    };
     async queryWanderers(noAllowed) {
         this.membersJson.members=this.countryWanderersMembers;
         var res='';
@@ -98,8 +129,6 @@ export default class countryWanderers {
                 
                 
             }
-            console.log(ans);
-
         }catch(e){
             console.log(e);
         }
