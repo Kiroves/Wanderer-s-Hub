@@ -36,13 +36,13 @@ const Results = () => {
             console.log(no);
             console.log(noResult);
         }
-        if (storageCity !== null) {
+        else if (storageCity !== null) {
             const cityResult = await handler.queryActivity(storageCity, storageCountry);
             console.log(storageCity);
             console.log(storageCountry);
             console.log(cityResult);
-        }
-        if (storageCountry !== null) {
+        }   
+        else if (storageCountry !== null) {
             const countryResult = await handler.queryCity(storageCountry);
             console.log(storageCountry);
             console.log(countryResult);
