@@ -1,5 +1,5 @@
 "use client";
-import GoogleMapsComponent from '../app/api/map.jsx';
+import GoogleMapsComponent from '../components/map.jsx';
 import Donut from '@/components/RaccoonLogin.jsx';
 import Button from '@/components/Button.jsx';
 import Login from '@/components/Login';
