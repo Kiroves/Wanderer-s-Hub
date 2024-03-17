@@ -104,7 +104,7 @@ export default class countryWanderers {
         }catch(e){
             console.log(e);
         }
-        return res;
+        return res.generate[0].text;
     };
     async queryWanderers(noAllowed) {
         this.membersJson.members=this.countryWanderersMembers;
