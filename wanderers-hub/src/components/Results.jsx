@@ -20,6 +20,12 @@ const Results = async () => {
             console.log(storageCountry);
             console.log(cityResult);
         }
+        if (storageCountry !== null) {
+            const countryResult = await handler.queryCity(storageCountry);
+            console.log(storageCountry);
+            console.log(countryResult);
+        }
+        console.log("oops")
     }
     return (
         <Button function={api} text={"gabeforreal"} />
