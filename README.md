@@ -33,6 +33,10 @@ Wanderer's Hub employs a comprehensive approach, combining various AI models and
 * JavaScript
 * HTML5
 * TailwindCSS
+* Three.js
 * Firebase
 * Google Maps API
-* OpenAI
+* Cohere AI API
+
+## Try it out
+To experience Wanderer's Hub, start by generating your own API keys for Firebase, Cohere AI, and Google Maps APIs. Then cd into the frontend and install dependencies using `npm i`. Then use `npm run dev` to run the frontend on localhost:3000/. Explore the world today!
