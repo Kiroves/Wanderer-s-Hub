@@ -44,26 +44,27 @@ export default class countryWanderers {
 
     async queryWanderers(noAllowed) {
         var res='';
-        var ans=[];
+        var no='';
         try {
             const cohere= new CohereClient({
                 token: process.env.NEXT_PUBLIC_REACT_APP_COHERE_API_KEY,
             });
-            let no=noAllowed.toString();
-            console.log(typeof no);
+            
+            const no = noAllowed.map(obj=>obj.value);
+            console.log(no);
             for(let i=0;i<4;i++){
                 
-                this.membersJson.query.push(this.membersJson.members[i].settings+"DO NOT CONSIDER THESE COUNTRIES: "+ no);
+                this.membersJson.query.push(this.membersJson.members[i].settings+"DO NOT CONSIDER THESE COUNTRIES: "+ no.toString());
                 console.log(this.membersJson.query[i]);
                 res = await cohere.generate({
                     
                     prompt:this.membersJson.query[i],
                     maxTokens:150,
                 });
-                ans.push(res);
+                
                 
             }
-            console.log(ans);
+            
             
             }catch(e){
                 console.log(e);
