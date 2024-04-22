@@ -1,7 +1,7 @@
 # Wanderer's Hub - Explore the World!
 
 Built as part of CrackedDevs.com X Spark Hackathon  
-Devpost: 
+Devpost: https://devpost.com/software/wanderer-s-hub
 
 ## Inspiration
 
@@ -20,10 +20,9 @@ Wanderer's Hub employs a comprehensive approach, combining various AI models and
 * Successfully integrating multiple AI models to provide personalized travel recommendations
 * Developing a user-friendly frontend for effortless exploration and discovery
 * Implementing advanced AI algorithms to analyze diverse travel preferences and experiences
-* Leveraging Python Flask and Firebase for efficient backend management and data storage
+* Leveraging Firebase for efficient backend management and data storage
 ## What's next for Wanderer's Hub
 * Continuously enhancing AI models to refine recommendation accuracy and relevance
-* Exploring advanced natural language processing (NLP) techniques to better understand user preferences and feedback
 * Expanding the platform's database to include a wider range of destinations and experiences
 * Conducting user feedback sessions to further improve and tailor travel recommendations
 
